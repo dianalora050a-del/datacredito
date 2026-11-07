@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -24,14 +25,13 @@ body {
     flex-direction: column;
 }
 
-/* CONTENIDO PRINCIPAL */
 .main {
     flex: 1;
     display: flex;
     min-height: 680px;
 }
 
-/* IMAGEN PARA PC */
+/* IMAGEN PC */
 .left {
     width: 50%;
     min-height: 680px;
@@ -71,7 +71,7 @@ body {
     object-fit: contain;
 }
 
-/* AVISO DE MAQUETA */
+/* AVISO */
 .demo-label {
     display: inline-block;
     font-size: 10px;
@@ -83,18 +83,18 @@ body {
 }
 
 h1 {
-    font-size: 34px;
+    font-size: 30px;
     font-weight: 600;
     color: #4776b8;
-    margin-bottom: 4px;
+    margin-bottom: 7px;
 }
 
 .subtitle {
-    font-size: 18px;
-    margin-bottom: 38px;
+    font-size: 17px;
+    margin-bottom: 30px;
 }
 
-/* CAMPOS DEMOSTRATIVOS */
+/* FORMULARIO */
 .form-group {
     margin-bottom: 13px;
     text-align: left;
@@ -122,18 +122,27 @@ select:focus,
     color: #aaa;
 }
 
-/* CAPTCHA VISUAL DECORATIVO */
+.demo-field {
+    background: #f1f1f1;
+    cursor: not-allowed;
+}
+
+/* CAPTCHA DECORATIVO */
 .captcha-area {
     margin-top: 15px;
     margin-bottom: 19px;
 }
 
 .captcha {
-    min-height: 33px;
+    min-height: 42px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 6px;
+    background: #eee;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px;
 }
 
 .glyph {
@@ -160,19 +169,9 @@ select:focus,
     background: none;
     cursor: pointer;
     font-size: 12px;
-    color: #111;
-    font-weight: 600;
-    margin: 5px auto 0;
-}
-
-/* ENLACE */
-.forgot {
-    display: block;
-    margin: 18px 0 34px;
     color: #3471b9;
-    font-size: 14px;
-    font-weight: bold;
-    text-decoration: none;
+    font-weight: 600;
+    margin: 7px auto 0;
 }
 
 /* CONDICIONES */
@@ -215,7 +214,11 @@ select:focus,
     cursor: pointer;
 }
 
-/* PIE DE PÁGINA */
+.login-button:hover {
+    background: #98216e;
+}
+
+/* PIE */
 .footer {
     min-height: 85px;
     width: 100%;
@@ -261,7 +264,6 @@ select:focus,
         min-height: auto;
     }
 
-    /* IMAGEN PARA MÓVIL */
     .left {
         width: 100%;
         height: 190px;
@@ -287,12 +289,12 @@ select:focus,
     }
 
     h1 {
-        font-size: 28px;
+        font-size: 27px;
     }
 
     .subtitle {
         font-size: 16px;
-        margin-bottom: 32px;
+        margin-bottom: 28px;
     }
 
     .footer {
@@ -356,19 +358,17 @@ select:focus,
 
     <main class="main">
 
-        <!-- IMAGEN RESPONSIVE -->
-        <section class="left" aria-label="Imagen ilustrativa"></section>
+        <section class="left"
+        aria-label="Imagen ilustrativa"></section>
 
-        <!-- PANEL DERECHO -->
         <section class="right">
 
             <div class="login">
 
-                <!-- LOGO EN IMAGEN -->
                 <div class="logo">
                     <img
-                        src="https://apps.datacredito.com.co/static/ofVirtual/images/logos/datacredito-experian.png"
-                        alt="Logo Datacrédito Experian">
+                    src="https://apps.datacredito.com.co/static/ofVirtual/images/logos/datacredito-experian.png"
+                    alt="Logo de referencia">
                 </div>
 
                 <span class="demo-label">
@@ -381,59 +381,70 @@ select:focus,
                     Vista previa de demostración
                 </p>
 
-                <!-- FORMULARIO LOCAL SIN CREDENCIALES -->
                 <form id="demoForm" autocomplete="off">
 
+                    <!-- CAMPO 1 -->
                     <div class="form-group">
                         <select aria-label="Tipo de documento">
-                            <option>Tipo de documento</option>
+                            <option>Cédula o NUIP</option>
                             <option>Cédula de ciudadanía</option>
                             <option>Cédula de extranjería</option>
+                            <option>NIT</option>
                             <option>Pasaporte</option>
                         </select>
                     </div>
 
+                    <!-- CAMPO 2 -->
                     <div class="form-group">
                         <input
-                            class="form-input"
-                            type="text"
-                            placeholder="Campo de ejemplo"
-                            autocomplete="off">
+                        class="form-input demo-field"
+                        type="text"
+                        placeholder="Número de ID"
+                        disabled>
                     </div>
 
+                    <!-- CAMPO 3 -->
                     <div class="form-group">
                         <input
-                            class="form-input"
-                            type="text"
-                            placeholder="Código de demostración"
-                            autocomplete="off">
+                        class="form-input demo-field"
+                        type="text"
+                        placeholder="Contraseña — campo ilustrativo"
+                        disabled>
                     </div>
 
-                    <!-- ELEMENTO VISUAL -->
+                    <!-- CAMPO 4 -->
+                    <div class="form-group">
+                        <input
+                        class="form-input demo-field"
+                        type="text"
+                        placeholder="Ingresa las letras que aparecen en el recuadro inferior"
+                        disabled>
+                    </div>
+
+                    <!-- CAPTCHA DECORATIVO -->
                     <div class="captcha-area">
 
                         <div class="captcha" id="captcha"></div>
 
                         <button
-                            type="button"
-                            class="refresh"
-                            id="refresh">
+                        type="button"
+                        class="refresh"
+                        id="refresh">
                             Cambiar diseño
                         </button>
 
                     </div>
 
-                    <a href="#" class="forgot" id="forgot">
-                        Volver a la demostración
-                    </a>
-
+                    <!-- CONDICIONES -->
                     <div class="terms">
 
                         <label>
                             <input type="checkbox">
                             <span>
                                 He leído y acepto
-                                <a href="#">Condiciones de uso</a>
+                                <a href="#condiciones">
+                                    Condiciones de uso
+                                </a>
                             </span>
                         </label>
 
@@ -441,14 +452,18 @@ select:focus,
                             <input type="checkbox">
                             <span>
                                 He leído y acepto
-                                <a href="#">Políticas de privacidad</a>
+                                <a href="#privacidad">
+                                    Políticas de privacidad
+                                </a>
                             </span>
                         </label>
 
                     </div>
 
-                    <button class="login-button" type="submit">
-                        Continuar
+                    <button
+                    class="login-button"
+                    type="submit">
+                        Ver demostración
                     </button>
 
                     <p style="font-size:11px;color:#888;margin-top:15px">
@@ -463,7 +478,7 @@ select:focus,
 
     </main>
 
-    <!-- PIE DE PÁGINA -->
+    <!-- FOOTER -->
     <footer class="footer">
 
         <div class="footer-content">
@@ -473,7 +488,7 @@ select:focus,
                 Todos los derechos reservados.
             </div>
 
-            <a href="#" class="footer-link">
+            <a href="#condiciones" class="footer-link">
                 Condiciones de uso
             </a>
 
@@ -555,22 +570,15 @@ renderCaptcha();
 document.getElementById("refresh")
 .addEventListener("click", renderCaptcha);
 
-// FORMULARIO DEMOSTRATIVO
+// DEMOSTRACIÓN LOCAL
 document.getElementById("demoForm")
 .addEventListener("submit", function(event) {
 
     event.preventDefault();
 
-    alert("Esta es una maqueta visual de demostración. No se ha enviado información.");
-
-});
-
-document.getElementById("forgot")
-.addEventListener("click", function(event) {
-
-    event.preventDefault();
-
-    alert("Vista de demostración.");
+    alert(
+        "Esta es una maqueta visual de demostración. No se ha enviado información."
+    );
 
 });
 
