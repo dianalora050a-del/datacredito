@@ -4,13 +4,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>FOPEP - Iniciar Sesión</title>
 
 <style>
-
-/* CONFIGURACIÓN GENERAL */
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -18,7 +14,7 @@
 }
 
 :root {
-    --verde: #008f68;
+    --verde: #00966c;
     --verde-oscuro: #006b52;
     --azul: #3267c7;
     --texto: #34495a;
@@ -36,19 +32,19 @@ a {
     color: inherit;
 }
 
-/* BARRA GOV.CO SUPERIOR */
+/* ENCABEZADO GOV.CO */
 
 .gov {
     background: var(--azul);
     color: white;
-    padding: 10px max(calc((100% - 1050px)/2), 20px);
+    padding: 10px max(calc((100% - 1100px)/2), 20px);
     font-size: 21px;
 }
 
-/* ENCABEZADO */
+/* CABECERA */
 
 .header {
-    max-width: 1050px;
+    max-width: 1100px;
     min-height: 95px;
     margin: auto;
     padding: 12px;
@@ -95,7 +91,7 @@ a {
     padding: 13px;
 }
 
-/* MENÚ DE NAVEGACIÓN */
+/* MENÚ */
 
 nav {
     background: var(--verde);
@@ -103,7 +99,7 @@ nav {
 }
 
 .nav-container {
-    max-width: 1050px;
+    max-width: 1100px;
     margin: auto;
     display: flex;
     align-items: center;
@@ -132,9 +128,9 @@ nav a:hover {
 /* CONTENIDO PRINCIPAL */
 
 main {
-    max-width: 1050px;
+    max-width: 1100px;
     margin: auto;
-    padding: 15px 12px;
+    padding: 15px 12px 0;
 }
 
 .migas {
@@ -149,24 +145,29 @@ main {
     align-items: start;
 }
 
-/* IMAGEN PRINCIPAL */
+/* FOTOGRAFÍA PRINCIPAL */
 
 .imagen {
-    height: 390px;
+    height: 419px;
     overflow: hidden;
-    background-image:
-        url("https://sistema.fopep.gov.co/webroot/assets/images/bg-iniciar-sesion.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: #eee;
+}
+
+.imagen img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 /* FORMULARIO */
 
 .formulario {
-    padding: 22px;
+    padding: 22px 24px;
     box-shadow: 0 3px 17px #0002;
     border-radius: 6px;
+    background: white;
 }
 
 h1 {
@@ -182,9 +183,10 @@ label {
     margin-bottom: 9px;
 }
 
-input, select {
+input,
+select {
     width: 100%;
-    height: 38px;
+    height: 42px;
     padding: 8px 12px;
     border: 1px solid #b9cbd4;
     margin-bottom: 21px;
@@ -192,7 +194,8 @@ input, select {
     background: white;
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
     outline: 1px solid var(--verde);
 }
 
@@ -202,20 +205,24 @@ input:focus, select:focus {
     gap: 10px;
     border: 1px solid #ddd;
     padding: 10px;
-    width: 280px;
+    width: 300px;
     max-width: 100%;
     margin-bottom: 18px;
 }
 
 .captcha input {
-    width: 20px;
-    height: 20px;
+    width: 21px;
+    height: 21px;
     margin: 0;
+}
+
+.captcha span {
+    font-size: 14px;
 }
 
 .boton {
     width: 100%;
-    padding: 12px;
+    padding: 13px;
     background: var(--verde);
     color: white;
     border: none;
@@ -231,15 +238,16 @@ input:focus, select:focus {
 
 .olvido-form {
     text-align: center;
-    margin-top: 14px;
+    margin-top: 15px;
     color: #006bd6;
+    font-size: 14px;
 }
 
-/* SECCIÓN BIENVENIDA */
+/* SECCIÓN INFERIOR */
 
 .portal-extra {
-    max-width: 1050px;
-    margin: 35px auto;
+    max-width: 1100px;
+    margin: 25px auto 0;
     padding: 12px;
 }
 
@@ -247,17 +255,18 @@ input:focus, select:focus {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 22px;
+    align-items: stretch;
 }
 
-/* IMAGEN DE FONDO ORIGINAL FOPEP */
+/* BANNER DE BIENVENIDA */
 
 .bienvenida {
-    min-height: 125px;
+    min-height: 135px;
 
     background-image:
         linear-gradient(
-            rgba(0,0,0,0.45),
-            rgba(0,0,0,0.45)
+            rgba(0,0,0,0.55),
+            rgba(0,0,0,0.55)
         ),
         url("https://sistema.fopep.gov.co/webroot/assets/images/bg-iniciar-sesion.png");
 
@@ -276,7 +285,7 @@ input:focus, select:focus {
     line-height: 1.2;
 }
 
-/* BOTONES REGISTRO E INICIO */
+/* TARJETA DE BOTONES */
 
 .tarjeta-acciones {
     padding: 18px;
@@ -285,10 +294,13 @@ input:focus, select:focus {
     grid-template-columns: 1fr 1fr;
     gap: 14px;
     border-radius: 5px;
+    background: white;
+    align-content: start;
 }
 
-.registro, .inicio {
-    padding: 10px;
+.registro,
+.inicio {
+    padding: 12px 8px;
     text-align: center;
     border: 2px solid #0872df;
     border-radius: 5px;
@@ -348,7 +360,7 @@ input:focus, select:focus {
 footer {
     background: var(--verde-oscuro);
     color: white;
-    padding: 25px max(calc((100% - 1050px)/2), 20px);
+    padding: 25px max(calc((100% - 1100px)/2), 20px);
 }
 
 .footer-columnas {
@@ -376,8 +388,8 @@ footer p {
 
 .redes span {
     background: #3767aa;
-    width: 25px;
-    height: 25px;
+    width: 27px;
+    height: 27px;
     display: grid;
     place-items: center;
     border-radius: 50%;
@@ -400,20 +412,20 @@ footer p {
     display: flex;
     justify-content: center;
     gap: 90px;
-    margin-top: 30px;
+    margin-top: 35px;
     font-size: 14px;
 }
 
-/* GOV.CO INFERIOR */
+/* BARRA GOV.CO INFERIOR */
 
 .gov-footer {
     background: var(--azul);
     color: white;
-    padding: 16px max(calc((100% - 1050px)/2), 20px);
+    padding: 16px max(calc((100% - 1100px)/2), 20px);
     font-size: 22px;
 }
 
-/* DISEÑO RESPONSIVE */
+/* RESPONSIVE */
 
 @media(max-width: 750px) {
 
@@ -429,7 +441,7 @@ footer p {
     }
 
     .imagen {
-        height: 300px;
+        height: 320px;
     }
 
     .nav-container {
@@ -438,6 +450,10 @@ footer p {
 
     .buscar {
         margin: 8px;
+    }
+
+    .portal-extra {
+        margin-top: 20px;
     }
 
     .footer-bottom {
@@ -461,7 +477,11 @@ footer p {
     }
 
     .formulario {
-        padding: 17px;
+        padding: 18px;
+    }
+
+    .bienvenida {
+        min-height: 120px;
     }
 
     .bienvenida h2 {
@@ -491,23 +511,23 @@ footer p {
 
 <body id="top">
 
-<!-- ENCABEZADO GOV.CO -->
+<!-- GOV.CO -->
 
 <div class="gov">
     ♛ | GOV.CO
 </div>
 
+<!-- CABECERA -->
+
 <header class="header">
 
     <div class="logo">
-
         <div class="logo-icon">❮</div>
 
         <div class="logo-text">
             <small>COLOMBIA<br>POTENCIA DE LA</small>
             VIDA
         </div>
-
     </div>
 
     <div>Imprimir &nbsp; ◉ &nbsp; Tт &nbsp; ☰</div>
@@ -518,10 +538,9 @@ footer p {
 
 </header>
 
-<!-- NAVEGACIÓN -->
+<!-- MENÚ -->
 
 <nav>
-
     <div class="nav-container">
 
         <a href="#">Inicio</a>
@@ -534,10 +553,9 @@ footer p {
         <div class="buscar">⌕ Buscar</div>
 
     </div>
-
 </nav>
 
-<!-- FORMULARIO PRINCIPAL -->
+<!-- CONTENIDO PRINCIPAL -->
 
 <main>
 
@@ -547,9 +565,16 @@ footer p {
 
     <section class="contenido">
 
-        <!-- IMAGEN FOPEP -->
+        <!-- FOTOGRAFÍA PRINCIPAL -->
 
-        <div class="imagen"></div>
+        <div class="imagen">
+
+            <img
+                src="foto-adultos.jpg"
+                alt="Pareja de adultos mayores"
+            >
+
+        </div>
 
         <!-- FORMULARIO -->
 
@@ -635,6 +660,8 @@ footer p {
 
     <div class="portal-actions">
 
+        <!-- BANNER CON FONDO ORIGINAL FOPEP -->
+
         <div class="bienvenida">
 
             <h2>
@@ -643,6 +670,8 @@ footer p {
             </h2>
 
         </div>
+
+        <!-- BOTONES -->
 
         <div class="tarjeta-acciones">
 
@@ -662,7 +691,7 @@ footer p {
 
     </div>
 
-    <!-- BOTONES DE NAVEGACIÓN -->
+    <!-- REGRESAR Y ARRIBA -->
 
     <div class="regresar">
 
@@ -683,7 +712,7 @@ footer p {
 
 </section>
 
-<!-- PIE DE PÁGINA -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -712,12 +741,10 @@ footer p {
             </p>
 
             <div class="redes">
-
                 <span>f</span>
                 <span>𝕏</span>
                 <span>▶</span>
                 <span>◉</span>
-
             </div>
 
         </div>
@@ -761,12 +788,10 @@ footer p {
 
 </footer>
 
-<!-- BARRA INFERIOR GOV.CO -->
+<!-- BARRA GOV.CO INFERIOR -->
 
 <div class="gov-footer">
-
     🇨🇴 &nbsp; ♛ | GOV.CO
-
 </div>
 
 <!-- JAVASCRIPT -->
