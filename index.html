@@ -4,57 +4,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Acceso a suscriptores - Maqueta</title>
+<title>Portal de consulta - Maqueta</title>
 
 <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fafafa;
+    color: #333;
+}
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 /* CONTENIDO PRINCIPAL */
+
 .main {
+    flex: 1;
+    display: flex;
     min-height: 680px;
 }
 
 /* PANEL IZQUIERDO */
+
 .left {
+    width: 50%;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
     min-height: 680px;
 }
 
 .abstract {
-    transform: scale(.85);
-    transform-origin: top left;
+    position: absolute;
+    top: 15px;
+    left: -40px;
+    width: 500px;
+    height: 190px;
+    opacity: .85;
+    background:
+      radial-gradient(circle at 30% 50%, #bd238c 0 10%, transparent 32%),
+      radial-gradient(circle at 45% 45%, #e64b9d 0 8%, transparent 35%),
+      radial-gradient(circle at 60% 40%, #d58bc3 0 5%, transparent 35%);
+    filter: blur(12px);
+}
+
+.abstract::after {
+    content: "";
+    position: absolute;
+    inset: 15px;
+    background-image: radial-gradient(#d52c91 1.5px, transparent 2px);
+    background-size: 12px 12px;
 }
 
 .people {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     height: 330px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(
+        to bottom,
+        transparent 72%,
+        #c9d0c8 72%,
+        #929b96 75%,
+        #626c69 100%
+    );
 }
 
 .person {
+    position: relative;
     width: 125px;
     height: 235px;
+    border-radius: 65px 65px 10px 10px;
+    background: linear-gradient(120deg, #287c9a, #15465b);
+}
+
+.person::before {
+    content: "";
+    position: absolute;
+    top: -65px;
+    left: 29px;
+    width: 68px;
+    height: 75px;
+    border-radius: 48% 48% 45% 45%;
+    background: #d9a889;
+    box-shadow: inset 0 12px 0 #44332e;
 }
 
 .person:nth-child(2) {
     height: 270px;
+    background: linear-gradient(120deg, #e9e9e9, #a8b2bc);
+}
+
+.person:nth-child(2)::before {
+    background: #e5b998;
+    box-shadow: inset 0 13px 0 #aa7954;
 }
 
 .person:nth-child(3) {
     height: 235px;
+    background: linear-gradient(120deg, #f4f4f4, #c9c9c9);
+}
+
+.person:nth-child(3)::before {
+    background: #e6b99f;
+    box-shadow: inset 0 13px 0 #28201e;
 }
 
 /* PANEL DERECHO */
+
 .right {
-    padding: 30px 30px;
+    width: 50%;
+    background: #fafafa;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
 }
 
 .login {
+    width: 100%;
     max-width: 400px;
+    text-align: center;
 }
 
 .logo {
-    font-size: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
     margin-bottom: 23px;
+    color: #1760aa;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.logo-icon {
+    display: grid;
+    grid-template-columns: repeat(2, 9px);
+    gap: 3px;
+}
+
+.logo-icon span {
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    background: #a32b8b;
+}
+
+.logo-icon span:nth-child(2) {
+    background: #2879b8;
+}
+
+.logo-icon span:nth-child(3) {
+    background: #dc368e;
+}
+
+.logo-icon span:nth-child(4) {
+    background: #702e91;
 }
 
 h1 {
     font-size: 34px;
+    font-weight: 600;
+    color: #4776b8;
+    margin-bottom: 4px;
 }
 
 .subtitle {
@@ -64,20 +189,49 @@ h1 {
 
 .form-group {
     margin-bottom: 13px;
+    text-align: left;
 }
 
 select,
 .form-input {
+    width: 100%;
     height: 49px;
+    border: 1px solid #e3e3e3;
+    background: white;
+    border-radius: 8px;
+    padding: 0 13px;
+    outline: none;
+    color: #444;
     font-size: 15px;
 }
+
+select:focus,
+.form-input:focus {
+    border-color: #4776b8;
+}
+
+.form-input::placeholder {
+    color: #aaa;
+}
+
+/* CAPTCHA DE PUNTOS */
 
 .captcha-area {
     margin-top: 15px;
     margin-bottom: 19px;
+    text-align: center;
+}
+
+.captcha {
+    min-height: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
 }
 
 .glyph {
+    display: grid;
     grid-template-columns: repeat(5, 3px);
     grid-template-rows: repeat(7, 3px);
     gap: 2px;
@@ -86,54 +240,152 @@ select,
 .dot {
     width: 3px;
     height: 3px;
+    border-radius: 50%;
+    background: #111;
 }
 
-.captcha {
-    gap: 6px;
+.dot.off {
+    background: transparent;
 }
+
+.refresh {
+    display: block;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 12px;
+    color: #111;
+    font-weight: 600;
+    margin: 5px auto 0;
+}
+
+.refresh:hover {
+    color: #b32b83;
+}
+
+/* RECUPERACIÓN */
 
 .forgot {
+    display: block;
     margin: 18px 0 34px;
+    color: #3471b9;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
 }
 
+/* CONDICIONES */
+
 .terms {
+    text-align: left;
+    padding-left: 5px;
     margin-bottom: 17px;
 }
 
 .terms label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
     margin-bottom: 13px;
     font-size: 13px;
 }
 
+.terms input {
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+    accent-color: #3471b9;
+}
+
+.terms a {
+    color: #c32b85;
+    text-decoration: underline;
+}
+
+/* BOTÓN */
+
 .login-button {
     width: 175px;
     height: 45px;
+    background: #b72b85;
+    color: white;
+    border: none;
+    border-radius: 6px;
     font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background: #a32175;
 }
 
 /* PIE DE PÁGINA */
+
 .footer {
     min-height: 85px;
+    width: 100%;
+    border-top: 2px solid #b62a87;
+    background: #fff;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
     padding: 15px 25px;
 }
 
 .footer-content {
+    width: 100%;
     max-width: 1150px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: start;
+    gap: 25px;
 }
 
 .copyright {
     font-size: 13px;
+    line-height: 22px;
+    text-align: left;
+}
+
+.footer-link {
+    font-size: 14px;
+    color: #365f9e;
+    text-decoration: none;
+    text-align: center;
+    padding-top: 2px;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+.footer-extra {
+    color: #aaa;
+    font-size: 11px;
+    text-align: right;
 }
 
 /* MÓVIL */
+
 @media(max-width: 850px) {
+
     .main {
         min-height: auto;
     }
 
+    .left {
+        display: none;
+    }
+
     .right {
+        width: 100%;
         min-height: calc(100vh - 85px);
         padding: 28px 20px;
+    }
+
+    .login {
+        max-width: 400px;
     }
 
     h1 {
@@ -147,9 +399,47 @@ select,
 
     .footer {
         min-height: auto;
+        padding: 20px;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+    }
+
+    .copyright {
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .footer-extra {
+        display: none;
     }
 }
 
+@media(max-width: 400px) {
+
+    .right {
+        padding: 25px 17px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    select,
+    .form-input {
+        height: 47px;
+        font-size: 14px;
+    }
+
+    .terms label {
+        font-size: 12px;
+    }
+}
 </style>
 </head>
 
@@ -159,8 +449,9 @@ select,
 
     <main class="main">
 
-        <!-- IZQUIERDA -->
+        <!-- PANEL IZQUIERDO -->
         <section class="left">
+
             <div class="abstract"></div>
 
             <div class="people">
@@ -168,9 +459,10 @@ select,
                 <div class="person"></div>
                 <div class="person"></div>
             </div>
+
         </section>
 
-        <!-- DERECHA -->
+        <!-- PANEL DERECHO -->
         <section class="right">
 
             <div class="login">
@@ -186,11 +478,12 @@ select,
                 </div>
 
                 <h1>Acceso a suscriptores</h1>
+
                 <p class="subtitle">
                     Ingrese sus datos para continuar
                 </p>
 
-                <form id="demoForm">
+                <form id="demoForm" autocomplete="off">
 
                     <div class="form-group">
                         <select>
@@ -203,24 +496,27 @@ select,
                     </div>
 
                     <div class="form-group">
-                        <input class="form-input"
-                               type="text"
-                               placeholder="Número de ID"
-                               maxlength="20">
+                        <input
+                            class="form-input"
+                            type="text"
+                            placeholder="Número de ID"
+                            maxlength="20">
                     </div>
 
                     <div class="form-group">
-                        <input class="form-input"
-                               type="password"
-                               placeholder="Contraseña"
-                               maxlength="50">
+                        <input
+                            class="form-input"
+                            type="password"
+                            placeholder="Contraseña"
+                            maxlength="50">
                     </div>
 
                     <div class="form-group">
-                        <input class="form-input"
-                               type="text"
-                               placeholder="Ingresa las letras que aparecen en el recuadro inferior"
-                               maxlength="8">
+                        <input
+                            class="form-input"
+                            type="text"
+                            placeholder="Ingresa el código de demostración"
+                            maxlength="8">
                     </div>
 
                     <!-- CAPTCHA -->
@@ -228,9 +524,10 @@ select,
 
                         <div class="captcha" id="captcha"></div>
 
-                        <button type="button"
-                                class="refresh"
-                                id="refresh">
+                        <button
+                            type="button"
+                            class="refresh"
+                            id="refresh">
                             Click para cambiar
                         </button>
 
@@ -272,11 +569,12 @@ select,
                 </form>
 
             </div>
+
         </section>
 
     </main>
 
-    <!-- PIE DE PÁGINA COMPLETO -->
+    <!-- PIE DE PÁGINA -->
     <footer class="footer">
 
         <div class="footer-content">
@@ -301,29 +599,32 @@ select,
 </div>
 
 <script>
-// Matrices de letras para el CAPTCHA visual
+
+// MATRICES DE LETRAS PARA CAPTCHA VISUAL
 const letters = {
-    A:["01110","10001","10001","11111","10001","10001","10001"],
-    B:["11110","10001","10001","11110","10001","10001","11110"],
-    C:["01111","10000","10000","10000","10000","10000","01111"],
-    D:["11110","10001","10001","10001","10001","10001","11110"],
-    E:["11111","10000","10000","11110","10000","10000","11111"],
-    F:["11111","10000","10000","11110","10000","10000","10000"],
-    G:["01111","10000","10000","10111","10001","10001","01111"],
-    H:["10001","10001","10001","11111","10001","10001","10001"],
-    I:["11111","00100","00100","00100","00100","00100","11111"],
-    J:["00111","00010","00010","00010","00010","10010","01100"],
-    K:["10001","10010","10100","11000","10100","10010","10001"],
-    L:["10000","10000","10000","10000","10000","10000","11111"],
-    M:["10001","11011","10101","10101","10001","10001","10001"],
-    N:["10001","11001","10101","10011","10001","10001","10001"],
-    O:["01110","10001","10001","10001","10001","10001","01110"],
-    P:["11110","10001","10001","11110","10000","10000","10000"],
-    R:["11110","10001","10001","11110","10100","10010","10001"],
-    S:["01111","10000","10000","01110","00001","00001","11110"],
-    T:["11111","00100","00100","00100","00100","00100","00100"],
-    U:["10001","10001","10001","10001","10001","10001","01110"],
-    V:["10001","10001","10001","10001","10001","01010","00100"]
+
+A:["01110","10001","10001","11111","10001","10001","10001"],
+B:["11110","10001","10001","11110","10001","10001","11110"],
+C:["01111","10000","10000","10000","10000","10000","01111"],
+D:["11110","10001","10001","10001","10001","10001","11110"],
+E:["11111","10000","10000","11110","10000","10000","11111"],
+F:["11111","10000","10000","11110","10000","10000","10000"],
+G:["01111","10000","10000","10111","10001","10001","01111"],
+H:["10001","10001","10001","11111","10001","10001","10001"],
+I:["11111","00100","00100","00100","00100","00100","11111"],
+J:["00111","00010","00010","00010","00010","10010","01100"],
+K:["10001","10010","10100","11000","10100","10010","10001"],
+L:["10000","10000","10000","10000","10000","10000","11111"],
+M:["10001","11011","10101","10101","10001","10001","10001"],
+N:["10001","11001","10101","10011","10001","10001","10001"],
+O:["01110","10001","10001","10001","10001","10001","01110"],
+P:["11110","10001","10001","11110","10000","10000","10000"],
+R:["11110","10001","10001","11110","10100","10010","10001"],
+S:["01111","10000","10000","01110","00001","00001","11110"],
+T:["11111","00100","00100","00100","00100","00100","00100"],
+U:["10001","10001","10001","10001","10001","10001","01110"],
+V:["10001","10001","10001","10001","10001","01010","00100"]
+
 };
 
 const captcha = document.getElementById("captcha");
@@ -331,23 +632,16 @@ const captcha = document.getElementById("captcha");
 function renderCaptcha() {
 
     const chars = ["F","T","B","E","R","P"];
-    const code = [];
-
-    for(let i = 0; i < 6; i++) {
-        const letter = chars[Math.floor(Math.random() * chars.length)];
-        code.push(letter);
-    }
-
     captcha.innerHTML = "";
 
-    code.forEach(letter => {
+    for(let i = 0; i < 6; i++) {
+
+        const letter = chars[Math.floor(Math.random() * chars.length)];
 
         const glyph = document.createElement("div");
         glyph.className = "glyph";
 
-        const matrix = letters[letter];
-
-        matrix.forEach(row => {
+        letters[letter].forEach(row => {
 
             row.split("").forEach(pixel => {
 
@@ -364,25 +658,33 @@ function renderCaptcha() {
         });
 
         captcha.appendChild(glyph);
-
-    });
+    }
 }
 
-// Inicializar y cambiar captcha
+// INICIAR CAPTCHA
 renderCaptcha();
 
+// CAMBIAR CAPTCHA
 document.getElementById("refresh").addEventListener("click", renderCaptcha);
 
-// Demostración local
+// FORMULARIO DE DEMOSTRACIÓN
 document.getElementById("demoForm").addEventListener("submit", function(e) {
+
     e.preventDefault();
-    alert("Esta es una maqueta visual. No se ha enviado ni guardado información.");
+
+    alert("Esta es una maqueta visual de demostración. No se ha enviado ni guardado información.");
+
 });
 
+// RECUPERACIÓN DEMOSTRATIVA
 document.getElementById("forgot").addEventListener("click", function(e) {
+
     e.preventDefault();
-    alert("Recuperación de contraseña: demostración.");
+
+    alert("Sección de recuperación de contraseña de demostración.");
+
 });
+
 </script>
 
 </body>
