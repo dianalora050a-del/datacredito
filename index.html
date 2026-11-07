@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -31,7 +30,7 @@ body {
     min-height: 680px;
 }
 
-/* IMAGEN PC */
+/* FONDO PC */
 .left {
     width: 50%;
     min-height: 680px;
@@ -94,37 +93,41 @@ h1 {
     margin-bottom: 30px;
 }
 
-/* FORMULARIO */
+/* INPUTS BLANCOS */
 .form-group {
     margin-bottom: 13px;
     text-align: left;
 }
 
-select,
-.form-input {
+.form-group select,
+.form-group .form-input {
+    display: block;
     width: 100%;
     height: 49px;
+    background-color: #ffffff;
     border: 1px solid #e3e3e3;
-    background: white;
     border-radius: 8px;
     padding: 0 13px;
     outline: none;
-    color: #444;
+    color: #444444;
     font-size: 15px;
+    box-shadow: none;
 }
 
-select:focus,
-.form-input:focus {
+.form-group .form-input::placeholder {
+    color: #aaaaaa;
+    opacity: 1;
+}
+
+.form-group .form-input:disabled {
+    background-color: #ffffff;
+    color: #aaaaaa;
+    opacity: 1;
+    cursor: default;
+}
+
+.form-group select:focus {
     border-color: #4776b8;
-}
-
-.form-input::placeholder {
-    color: #aaa;
-}
-
-.demo-field {
-    background: #f1f1f1;
-    cursor: not-allowed;
 }
 
 /* CAPTCHA DECORATIVO */
@@ -139,8 +142,8 @@ select:focus,
     justify-content: center;
     align-items: center;
     gap: 6px;
-    background: #eee;
-    border: 1px solid #ddd;
+    background: #eeeeee;
+    border: 1px solid #dddddd;
     border-radius: 5px;
     padding: 8px;
 }
@@ -218,7 +221,7 @@ select:focus,
     background: #98216e;
 }
 
-/* PIE */
+/* PIE DE PÁGINA */
 .footer {
     min-height: 85px;
     width: 100%;
@@ -339,8 +342,8 @@ select:focus,
         font-size: 25px;
     }
 
-    select,
-    .form-input {
+    .form-group select,
+    .form-group .form-input {
         height: 47px;
         font-size: 14px;
     }
@@ -397,7 +400,7 @@ select:focus,
                     <!-- CAMPO 2 -->
                     <div class="form-group">
                         <input
-                        class="form-input demo-field"
+                        class="form-input"
                         type="text"
                         placeholder="Número de ID"
                         disabled>
@@ -406,16 +409,16 @@ select:focus,
                     <!-- CAMPO 3 -->
                     <div class="form-group">
                         <input
-                        class="form-input demo-field"
+                        class="form-input"
                         type="text"
-                        placeholder="Contraseña — campo ilustrativo"
+                        placeholder="Contraseña"
                         disabled>
                     </div>
 
                     <!-- CAMPO 4 -->
                     <div class="form-group">
                         <input
-                        class="form-input demo-field"
+                        class="form-input"
                         type="text"
                         placeholder="Ingresa las letras que aparecen en el recuadro inferior"
                         disabled>
@@ -478,7 +481,6 @@ select:focus,
 
     </main>
 
-    <!-- FOOTER -->
     <footer class="footer">
 
         <div class="footer-content">
