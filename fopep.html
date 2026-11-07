@@ -1,27 +1,30 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FOPEP - Iniciar Sesión</title>
+<title>FOPEP - Portal Web</title>
 
 <style>
-:root {
-    --verde: #008f68;
-    --verde-oscuro: #006b52;
-    --azul: #3267c7;
-    --texto: #273b4b;
-}
-
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --verde: #008f68;
+    --oscuro: #006b52;
+    --azul: #3267c7;
+    --texto: #34495a;
 }
 
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
     color: var(--texto);
     background: white;
+    font-size: 14px;
 }
 
 a {
@@ -29,60 +32,66 @@ a {
     color: inherit;
 }
 
-/* ENCABEZADO GOV.CO */
+/* GOV.CO */
 
 .gov {
     background: var(--azul);
     color: white;
-    padding: 14px 13%;
-    font-size: 24px;
+    padding: 10px max(calc((100% - 1050px)/2), 20px);
+    font-size: 21px;
 }
 
+/* ENCABEZADO */
+
 .header {
-    max-width: 1190px;
+    max-width: 1050px;
+    min-height: 95px;
     margin: auto;
-    min-height: 125px;
+    padding: 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
-    padding: 15px;
+    gap: 15px;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .logo-icon {
     background: #78183d;
     color: white;
-    padding: 15px;
-    font-size: 35px;
-    border-radius: 8px;
+    padding: 12px;
+    font-size: 28px;
 }
 
 .logo-text {
-    color: #555;
+    font-size: 20px;
     font-weight: bold;
-    font-size: 25px;
+    color: #555;
+}
+
+.logo-text small {
+    display: block;
+    font-size: 10px;
 }
 
 .fopep {
     color: #b51f2c;
-    font-size: 30px;
+    font-size: 26px;
     font-weight: bold;
 }
 
-.user-icon {
-    background: #00986e;
+.user {
+    background: var(--verde);
     color: white;
-    padding: 15px;
     border-radius: 50%;
+    padding: 13px;
 }
 
-/* MENÚ */
+/* NAVEGACIÓN */
 
 nav {
     background: var(--verde);
@@ -90,7 +99,7 @@ nav {
 }
 
 .nav-container {
-    max-width: 1190px;
+    max-width: 1050px;
     margin: auto;
     display: flex;
     align-items: center;
@@ -98,7 +107,8 @@ nav {
 }
 
 nav a {
-    padding: 23px 14px;
+    padding: 17px 11px;
+    font-size: 13px;
     font-weight: bold;
 }
 
@@ -107,36 +117,38 @@ nav a:hover {
 }
 
 .buscar {
-    margin-left: auto;
     background: white;
-    color: #82949f;
-    border-radius: 30px;
-    padding: 12px 20px;
-    width: 200px;
+    color: #8497a3;
+    padding: 9px 15px;
+    border-radius: 25px;
+    margin-left: auto;
+    width: 155px;
 }
 
-/* CONTENIDO PRINCIPAL */
+/* CONTENIDO */
 
 main {
-    max-width: 1190px;
+    max-width: 1050px;
     margin: auto;
-    padding: 20px 10px;
+    padding: 15px 12px;
 }
 
 .migas {
-    margin-bottom: 30px;
     color: #547487;
+    margin-bottom: 22px;
 }
 
 .contenido {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    gap: 22px;
     align-items: start;
 }
 
+/* IMAGEN ORIGINAL */
+
 .imagen {
-    height: 510px;
+    height: 390px;
     overflow: hidden;
 }
 
@@ -144,108 +156,114 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
 }
 
 /* FORMULARIO */
 
 .formulario {
-    padding: 28px;
-    box-shadow: 0 4px 22px #0002;
-    border-radius: 7px;
+    padding: 22px;
+    box-shadow: 0 3px 17px #0002;
+    border-radius: 6px;
 }
 
 h1 {
-    color: var(--verde-oscuro);
-    font-size: 38px;
-    margin: 0 0 45px;
+    font-size: 30px;
+    color: var(--oscuro);
+    margin-bottom: 32px;
 }
 
 label {
     display: block;
-    font-size: 18px;
     font-weight: bold;
-    margin-bottom: 12px;
+    font-size: 15px;
+    margin-bottom: 9px;
 }
 
 input, select {
     width: 100%;
-    height: 42px;
-    padding: 10px;
+    height: 38px;
+    padding: 8px 12px;
     border: 1px solid #b9cbd4;
-    margin-bottom: 28px;
-    font-size: 16px;
-}
-
-.password {
-    position: relative;
+    margin-bottom: 21px;
+    font-size: 14px;
+    background: white;
 }
 
 .captcha {
     display: flex;
     align-items: center;
+    gap: 10px;
     border: 1px solid #ddd;
-    padding: 12px;
-    width: 325px;
+    padding: 10px;
+    width: 280px;
     max-width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .captcha input {
-    width: 22px;
-    margin: 0 12px 0 0;
+    width: 20px;
+    height: 20px;
+    margin: 0;
 }
 
 .boton {
+    width: 100%;
+    padding: 12px;
     background: var(--verde);
     color: white;
     border: none;
-    width: 100%;
-    padding: 15px;
-    font-size: 17px;
     font-weight: bold;
+    font-size: 15px;
     cursor: pointer;
 }
 
-/* SEGUNDA SECCIÓN */
+.olvido-form {
+    text-align: center;
+    margin-top: 14px;
+    color: #006bd6;
+}
+
+/* BIENVENIDA */
 
 .portal-extra {
-    max-width: 1190px;
-    margin: 40px auto;
-    padding: 10px;
+    max-width: 1050px;
+    margin: 35px auto;
+    padding: 12px;
 }
 
 .portal-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    gap: 22px;
 }
 
 .bienvenida {
-    min-height: 135px;
+    min-height: 125px;
     background:
-        linear-gradient(#111b20a8, #111b20a8),
+        linear-gradient(#111b207c, #111b207c),
         url("foto-adultos.jpg") center/cover;
     display: flex;
     align-items: center;
-    padding: 25px 50px;
+    padding: 25px;
     color: white;
 }
 
 .bienvenida h2 {
-    font-size: 36px;
+    font-size: 28px;
     line-height: 1.2;
 }
 
 .tarjeta-acciones {
-    padding: 20px 25px;
-    box-shadow: 0 3px 20px #0002;
+    padding: 18px;
+    box-shadow: 0 3px 15px #0002;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 18px;
+    gap: 14px;
 }
 
 .registro, .inicio {
-    padding: 12px;
+    padding: 10px;
     text-align: center;
     border: 2px solid #0872df;
     border-radius: 5px;
@@ -259,69 +277,69 @@ input, select {
 }
 
 .olvido {
-    grid-column: 1 / -1;
     color: #006bd6;
     font-weight: bold;
+    grid-column: 1 / -1;
 }
 
-/* REGRESAR Y ARRIBA */
+/* REGRESAR */
 
 .regresar {
     display: flex;
     justify-content: flex-end;
-    gap: 20px;
     align-items: center;
-    margin: 50px 0;
+    gap: 18px;
+    margin: 35px 0;
 }
 
 .regresar span {
     background: #ddd;
-    width: 54px;
-    height: 54px;
+    width: 43px;
+    height: 43px;
     border-radius: 50%;
     display: inline-grid;
     place-items: center;
-    font-size: 30px;
+    font-size: 24px;
 }
 
 /* PIE DE PÁGINA */
 
 footer {
-    background: var(--verde-oscuro);
+    background: var(--oscuro);
     color: white;
-    padding: 30px max(calc((100% - 1190px)/2), 25px);
+    padding: 25px max(calc((100% - 1050px)/2), 20px);
 }
 
 .footer-columnas {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 50px;
 }
 
 footer h3 {
-    font-size: 18px;
-    margin-bottom: 18px;
+    font-size: 15px;
+    margin-bottom: 12px;
 }
 
 footer p {
-    font-size: 17px;
+    font-size: 14px;
     line-height: 1.6;
-    margin-bottom: 18px;
+    margin-bottom: 13px;
 }
 
 .redes {
     display: flex;
-    gap: 10px;
-    margin-top: 25px;
+    gap: 8px;
+    margin-top: 18px;
 }
 
 .redes span {
     background: #3767aa;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
+    width: 25px;
+    height: 25px;
     display: grid;
     place-items: center;
+    border-radius: 50%;
     font-weight: bold;
 }
 
@@ -340,22 +358,23 @@ footer p {
 .footer-bottom {
     display: flex;
     justify-content: center;
-    gap: 130px;
-    margin-top: 45px;
+    gap: 90px;
+    margin-top: 30px;
+    font-size: 14px;
 }
 
-/* BARRA GOV.CO INFERIOR */
+/* GOV.CO INFERIOR */
 
 .gov-footer {
     background: var(--azul);
     color: white;
-    padding: 20px 13%;
-    font-size: 25px;
+    padding: 16px max(calc((100% - 1050px)/2), 20px);
+    font-size: 22px;
 }
 
-/* RESPONSIVE */
+/* DISEÑO RESPONSIVE */
 
-@media(max-width: 900px) {
+@media(max-width: 750px) {
 
     .header {
         flex-wrap: wrap;
@@ -369,7 +388,7 @@ footer p {
     }
 
     .imagen {
-        height: 350px;
+        height: 300px;
     }
 
     .nav-container {
@@ -377,55 +396,47 @@ footer p {
     }
 
     .buscar {
-        margin: 10px;
+        margin: 8px;
     }
 
     .footer-bottom {
-        gap: 25px;
+        gap: 20px;
         flex-wrap: wrap;
     }
 }
 
-@media(max-width: 520px) {
-
-    .gov {
-        padding: 12px 20px;
-    }
+@media(max-width: 480px) {
 
     .logo-text {
-        font-size: 20px;
+        font-size: 17px;
     }
 
     .fopep {
-        font-size: 24px;
-    }
-
-    .formulario {
-        padding: 20px;
+        font-size: 22px;
     }
 
     h1 {
-        font-size: 30px;
+        font-size: 26px;
     }
 
-    .bienvenida {
-        padding: 20px;
+    .formulario {
+        padding: 17px;
     }
 
     .bienvenida h2 {
-        font-size: 28px;
+        font-size: 24px;
     }
 
     .tarjeta-acciones {
-        padding: 15px;
+        padding: 12px;
+    }
+
+    .regresar {
+        font-size: 12px;
     }
 
     footer {
-        padding: 25px 20px;
-    }
-
-    .footer-bottom {
-        font-size: 14px;
+        padding: 22px 17px;
     }
 }
 </style>
@@ -433,40 +444,45 @@ footer p {
 
 <body id="top">
 
-<!-- ENCABEZADO -->
+<!-- ENCABEZADO GOV.CO -->
 
-<div class="gov">♛ | GOV.CO</div>
+<div class="gov">
+    ♛ | GOV.CO
+</div>
 
 <header class="header">
 
     <div class="logo">
         <div class="logo-icon">❮</div>
+
         <div class="logo-text">
-            COLOMBIA<br>
-            POTENCIA DE LA<br>
+            <small>COLOMBIA<br>POTENCIA DE LA</small>
             VIDA
         </div>
     </div>
 
-    <div>Imprimir &nbsp; ◉ &nbsp; Tт &nbsp; Modo lectura</div>
+    <div>Imprimir &nbsp; ◉ &nbsp; Tт &nbsp; ☰</div>
 
-    <div class="user-icon">●</div>
+    <div class="user">●</div>
 
     <div class="fopep">✣ FOPEP</div>
 
 </header>
 
-<!-- NAVEGACIÓN -->
+<!-- MENÚ -->
 
 <nav>
     <div class="nav-container">
+
         <a href="#">Inicio</a>
         <a href="#">Acerca del FOPEP</a>
         <a href="#">Entidades Sustituidas</a>
         <a href="#">Trámites de Pensionados</a>
         <a href="#">Atención al Pensionado</a>
         <a href="#">Noticias</a>
+
         <div class="buscar">⌕ Buscar</div>
+
     </div>
 </nav>
 
@@ -482,7 +498,7 @@ footer p {
 
         <div class="imagen">
             <img src="foto-adultos.jpg"
-                 alt="Adultos mayores">
+                 alt="Pareja de adultos mayores">
         </div>
 
         <div class="formulario">
@@ -523,8 +539,8 @@ footer p {
                     Ingresar
                 </button>
 
-                <p style="text-align:center">
-                    <a href="#">¿Olvidó su contraseña?</a>
+                <p class="olvido-form">
+                    ¿Olvidó su contraseña?
                 </p>
 
             </form>
@@ -535,17 +551,19 @@ footer p {
 
 </main>
 
-<!-- SEGUNDA SECCIÓN -->
+<!-- BIENVENIDA Y BOTONES -->
 
 <section class="portal-extra">
 
     <div class="portal-actions">
 
         <div class="bienvenida">
+
             <h2>
                 Bienvenido a nuestro<br>
                 Portal Web
             </h2>
+
         </div>
 
         <div class="tarjeta-acciones">
@@ -566,11 +584,9 @@ footer p {
 
     </div>
 
-    <!-- REGRESAR Y ARRIBA -->
-
     <div class="regresar">
 
-        <a href="#" onclick="history.back(); return false;">
+        <a href="#" onclick="history.back();return false;">
             Regresar <span>←</span>
         </a>
 
@@ -606,9 +622,7 @@ footer p {
 
             <h3>FUNCIONARIOS</h3>
 
-            <p>
-                Acceso funcionarios
-            </p>
+            <p>Acceso funcionarios</p>
 
             <div class="redes">
                 <span>f</span>
@@ -661,16 +675,14 @@ footer p {
 </div>
 
 <script>
-
 document.getElementById("loginForm")
 .addEventListener("submit", function(e) {
 
     e.preventDefault();
 
-    alert("Esta es una maqueta visual. No envía datos ni inicia sesión.");
+    alert("Maqueta visual: no se envían datos.");
 
 });
-
 </script>
 
 </body>
