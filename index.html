@@ -7,429 +7,149 @@
 <title>Acceso a suscriptores - Maqueta</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #fafafa;
-    color: #333;
-}
-
-.page {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
 /* CONTENIDO PRINCIPAL */
-
 .main {
-    flex: 1;
-    display: flex;
-    min-height: 760px;
+    min-height: 680px;
 }
 
 /* PANEL IZQUIERDO */
-
 .left {
-    width: 50%;
-    position: relative;
-    overflow: hidden;
-    background: #fff;
-    min-height: 650px;
+    min-height: 680px;
 }
 
 .abstract {
-    position: absolute;
-    top: 20px;
-    left: -40px;
-    width: 570px;
-    height: 210px;
-    opacity: .85;
-    background:
-      radial-gradient(circle at 30% 50%, #bd238c 0 10%, transparent 32%),
-      radial-gradient(circle at 45% 45%, #e64b9d 0 8%, transparent 35%),
-      radial-gradient(circle at 60% 40%, #d58bc3 0 5%, transparent 35%);
-    filter: blur(12px);
-}
-
-.abstract::after {
-    content: "";
-    position: absolute;
-    inset: 15px;
-    background-image: radial-gradient(#d52c91 1.5px, transparent 2px);
-    background-size: 12px 12px;
+    transform: scale(.85);
+    transform-origin: top left;
 }
 
 .people {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 390px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 12px;
-    background: linear-gradient(to bottom, transparent 72%, #c9d0c8 72%, #929b96 75%, #626c69 100%);
+    height: 330px;
 }
 
 .person {
-    position: relative;
-    width: 145px;
-    height: 280px;
-    border-radius: 65px 65px 10px 10px;
-    background: linear-gradient(120deg, #287c9a, #15465b);
-}
-
-.person::before {
-    content: "";
-    position: absolute;
-    top: -72px;
-    left: 35px;
-    width: 78px;
-    height: 85px;
-    border-radius: 48% 48% 45% 45%;
-    background: #d9a889;
-    box-shadow: inset 0 12px 0 #44332e;
+    width: 125px;
+    height: 235px;
 }
 
 .person:nth-child(2) {
-    height: 320px;
-    background: linear-gradient(120deg, #e9e9e9, #a8b2bc);
-}
-
-.person:nth-child(2)::before {
-    background: #e5b998;
-    box-shadow: inset 0 13px 0 #aa7954;
+    height: 270px;
 }
 
 .person:nth-child(3) {
-    height: 280px;
-    background: linear-gradient(120deg, #f4f4f4, #c9c9c9);
-}
-
-.person:nth-child(3)::before {
-    background: #e6b99f;
-    box-shadow: inset 0 13px 0 #28201e;
+    height: 235px;
 }
 
 /* PANEL DERECHO */
-
 .right {
-    width: 50%;
-    background: #fafafa;
-    display: flex;
-    justify-content: center;
-    padding: 42px 35px;
+    padding: 30px 30px;
 }
 
 .login {
-    width: 100%;
-    max-width: 430px;
-    text-align: center;
+    max-width: 400px;
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    margin-bottom: 32px;
-    color: #1760aa;
-    font-size: 21px;
-    font-weight: 600;
-}
-
-.logo-icon {
-    display: grid;
-    grid-template-columns: repeat(2, 9px);
-    gap: 3px;
-}
-
-.logo-icon span {
-    width: 9px;
-    height: 9px;
-    border-radius: 2px;
-    background: #a32b8b;
-}
-
-.logo-icon span:nth-child(2) {
-    background: #2879b8;
-}
-
-.logo-icon span:nth-child(3) {
-    background: #dc368e;
-}
-
-.logo-icon span:nth-child(4) {
-    background: #702e91;
+    font-size: 19px;
+    margin-bottom: 23px;
 }
 
 h1 {
-    font-size: 39px;
-    font-weight: 600;
-    color: #4776b8;
-    margin-bottom: 4px;
+    font-size: 34px;
 }
 
 .subtitle {
-    font-size: 20px;
-    margin-bottom: 55px;
+    font-size: 18px;
+    margin-bottom: 38px;
 }
 
 .form-group {
-    margin-bottom: 17px;
-    text-align: left;
+    margin-bottom: 13px;
 }
 
 select,
 .form-input {
-    width: 100%;
-    height: 55px;
-    border: 1px solid #e3e3e3;
-    background: white;
-    border-radius: 8px;
-    padding: 0 13px;
-    outline: none;
-    color: #444;
-    font-size: 16px;
+    height: 49px;
+    font-size: 15px;
 }
-
-select:focus,
-.form-input:focus {
-    border-color: #4776b8;
-}
-
-.form-input::placeholder {
-    color: #aaa;
-}
-
-/* CAPTCHA DE PUNTOS */
 
 .captcha-area {
-    margin-top: 20px;
-    margin-bottom: 26px;
-    text-align: center;
-}
-
-.captcha {
-    min-height: 39px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 7px;
+    margin-top: 15px;
+    margin-bottom: 19px;
 }
 
 .glyph {
-    display: grid;
-    grid-template-columns: repeat(5, 4px);
-    grid-template-rows: repeat(7, 4px);
+    grid-template-columns: repeat(5, 3px);
+    grid-template-rows: repeat(7, 3px);
     gap: 2px;
 }
 
 .dot {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: #111;
+    width: 3px;
+    height: 3px;
 }
 
-.dot.off {
-    background: transparent;
-}
-
-.refresh {
-    display: block;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 13px;
-    color: #111;
-    font-weight: 600;
-    margin: 5px auto 0;
-}
-
-.refresh:hover {
-    color: #b32b83;
+.captcha {
+    gap: 6px;
 }
 
 .forgot {
-    display: block;
-    margin: 24px 0 48px;
-    color: #3471b9;
-    font-size: 14px;
-    font-weight: bold;
-    text-decoration: none;
+    margin: 18px 0 34px;
 }
 
-/* CONDICIONES */
-
 .terms {
-    text-align: left;
-    padding-left: 5px;
-    margin-bottom: 22px;
+    margin-bottom: 17px;
 }
 
 .terms label {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    margin-bottom: 17px;
-    font-size: 14px;
+    margin-bottom: 13px;
+    font-size: 13px;
 }
-
-.terms input {
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-    accent-color: #3471b9;
-}
-
-.terms a {
-    color: #c32b85;
-    text-decoration: underline;
-}
-
-/* BOTÓN */
 
 .login-button {
-    width: 194px;
-    height: 50px;
-    background: #b72b85;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.login-button:hover {
-    background: #a32175;
+    width: 175px;
+    height: 45px;
+    font-size: 15px;
 }
 
 /* PIE DE PÁGINA */
-
 .footer {
-    min-height: 100px;
-    width: 100%;
-    border-top: 2px solid #b62a87;
-    background: #fff;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 19px 25px;
+    min-height: 85px;
+    padding: 15px 25px;
 }
 
 .footer-content {
-    width: 100%;
-    max-width: 1208px;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    align-items: start;
-    gap: 25px;
+    max-width: 1150px;
 }
 
 .copyright {
-    font-size: 14px;
-    line-height: 24px;
-    text-align: left;
+    font-size: 13px;
 }
 
-.footer-link {
-    font-size: 15px;
-    color: #365f9e;
-    text-decoration: none;
-    text-align: center;
-    padding-top: 2px;
-}
-
-.footer-link:hover {
-    text-decoration: underline;
-}
-
-.footer-extra {
-    color: #aaa;
-    font-size: 11px;
-    text-align: right;
-}
-
-/* RESPONSIVE */
-
+/* MÓVIL */
 @media(max-width: 850px) {
     .main {
         min-height: auto;
     }
 
-    .left {
-        display: none;
-    }
-
     .right {
-        width: 100%;
-        min-height: calc(100vh - 100px);
-        padding: 35px 22px 45px;
-    }
-
-    .login {
-        max-width: 430px;
+        min-height: calc(100vh - 85px);
+        padding: 28px 20px;
     }
 
     h1 {
-        font-size: 29px;
+        font-size: 28px;
     }
 
     .subtitle {
-        font-size: 17px;
-        margin-bottom: 40px;
+        font-size: 16px;
+        margin-bottom: 32px;
     }
 
     .footer {
         min-height: auto;
-        padding: 20px;
-    }
-
-    .footer-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 12px;
-    }
-
-    .copyright {
-        text-align: center;
-        font-size: 12px;
-    }
-
-    .footer-extra {
-        display: none;
     }
 }
 
-@media(max-width: 400px) {
-    .right {
-        padding: 28px 17px;
-    }
-
-    h1 {
-        font-size: 26px;
-    }
-
-    select,
-    .form-input {
-        height: 51px;
-        font-size: 14px;
-    }
-
-    .terms label {
-        font-size: 12px;
-    }
-}
 </style>
 </head>
 
