@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portal de consulta - Maqueta</title>
+<title>Maqueta visual de consulta</title>
 
 <style>
 * {
@@ -25,14 +24,14 @@ body {
     flex-direction: column;
 }
 
-/* CONTENIDO */
+/* CONTENIDO PRINCIPAL */
 .main {
     flex: 1;
     display: flex;
     min-height: 680px;
 }
 
-/* IMAGEN PC */
+/* IMAGEN PARA PC */
 .left {
     width: 50%;
     min-height: 680px;
@@ -42,7 +41,7 @@ body {
     background-size: cover;
 }
 
-/* FORMULARIO */
+/* PANEL DERECHO */
 .right {
     width: 50%;
     background: #fafafa;
@@ -57,43 +56,22 @@ body {
     text-align: center;
 }
 
-/* MARCA DEMOSTRATIVA */
+/* LOGO */
 .logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 7px;
     margin-bottom: 23px;
-    color: #1760aa;
-    font-size: 19px;
-    font-weight: 600;
 }
 
-.logo-icon {
-    display: grid;
-    grid-template-columns: repeat(2, 9px);
-    gap: 3px;
+.logo img {
+    width: 220px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
-.logo-icon span {
-    width: 9px;
-    height: 9px;
-    border-radius: 2px;
-    background: #a32b8b;
-}
-
-.logo-icon span:nth-child(2) {
-    background: #2879b8;
-}
-
-.logo-icon span:nth-child(3) {
-    background: #dc368e;
-}
-
-.logo-icon span:nth-child(4) {
-    background: #702e91;
-}
-
+/* AVISO DE MAQUETA */
 .demo-label {
     display: inline-block;
     font-size: 10px;
@@ -116,6 +94,7 @@ h1 {
     margin-bottom: 38px;
 }
 
+/* CAMPOS DEMOSTRATIVOS */
 .form-group {
     margin-bottom: 13px;
     text-align: left;
@@ -143,7 +122,7 @@ select:focus,
     color: #aaa;
 }
 
-/* CAPTCHA */
+/* CAPTCHA VISUAL DECORATIVO */
 .captcha-area {
     margin-top: 15px;
     margin-bottom: 19px;
@@ -236,10 +215,6 @@ select:focus,
     cursor: pointer;
 }
 
-.login-button:hover {
-    background: #a32175;
-}
-
 /* PIE DE PÁGINA */
 .footer {
     min-height: 85px;
@@ -286,7 +261,7 @@ select:focus,
         min-height: auto;
     }
 
-    /* IMAGEN MÓVIL */
+    /* IMAGEN PARA MÓVIL */
     .left {
         width: 100%;
         height: 190px;
@@ -305,6 +280,10 @@ select:focus,
 
     .login {
         max-width: 400px;
+    }
+
+    .logo img {
+        width: 190px;
     }
 
     h1 {
@@ -350,6 +329,10 @@ select:focus,
         padding: 25px 17px;
     }
 
+    .logo img {
+        width: 175px;
+    }
+
     h1 {
         font-size: 25px;
     }
@@ -373,79 +356,75 @@ select:focus,
 
     <main class="main">
 
-        <!-- IMAGEN -->
-        <section class="left"></section>
+        <!-- IMAGEN RESPONSIVE -->
+        <section class="left" aria-label="Imagen ilustrativa"></section>
 
-        <!-- FORMULARIO DE MAQUETA -->
+        <!-- PANEL DERECHO -->
         <section class="right">
 
             <div class="login">
 
+                <!-- LOGO EN IMAGEN -->
                 <div class="logo">
-                    <div class="logo-icon">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    Portal de consulta
+                    <img
+                        src="https://apps.datacredito.com.co/static/ofVirtual/images/logos/datacredito-experian.png"
+                        alt="Logo Datacrédito Experian">
                 </div>
 
-                <span class="demo-label">MAQUETA NO OFICIAL</span>
+                <span class="demo-label">
+                    MAQUETA NO OFICIAL
+                </span>
 
                 <h1>Acceso a suscriptores</h1>
 
                 <p class="subtitle">
-                    Ingrese sus datos para continuar
+                    Vista previa de demostración
                 </p>
 
+                <!-- FORMULARIO LOCAL SIN CREDENCIALES -->
                 <form id="demoForm" autocomplete="off">
 
                     <div class="form-group">
-                        <select>
-                            <option>Cédula o NUIP</option>
+                        <select aria-label="Tipo de documento">
+                            <option>Tipo de documento</option>
                             <option>Cédula de ciudadanía</option>
                             <option>Cédula de extranjería</option>
-                            <option>NIT</option>
                             <option>Pasaporte</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <input class="form-input"
-                               type="text"
-                               placeholder="Número de ID"
-                               autocomplete="off">
+                        <input
+                            class="form-input"
+                            type="text"
+                            placeholder="Campo de ejemplo"
+                            autocomplete="off">
                     </div>
 
                     <div class="form-group">
-                        <input class="form-input"
-                               type="password"
-                               placeholder="Contraseña"
-                               autocomplete="new-password">
+                        <input
+                            class="form-input"
+                            type="text"
+                            placeholder="Código de demostración"
+                            autocomplete="off">
                     </div>
 
-                    <div class="form-group">
-                        <input class="form-input"
-                               type="text"
-                               placeholder="Código de demostración">
-                    </div>
-
-                    <!-- CAPTCHA VISUAL -->
+                    <!-- ELEMENTO VISUAL -->
                     <div class="captcha-area">
 
                         <div class="captcha" id="captcha"></div>
 
-                        <button type="button"
-                                class="refresh"
-                                id="refresh">
-                            Click para cambiar
+                        <button
+                            type="button"
+                            class="refresh"
+                            id="refresh">
+                            Cambiar diseño
                         </button>
 
                     </div>
 
                     <a href="#" class="forgot" id="forgot">
-                        ¿Olvidó su contraseña?
+                        Volver a la demostración
                     </a>
 
                     <div class="terms">
@@ -469,11 +448,11 @@ select:focus,
                     </div>
 
                     <button class="login-button" type="submit">
-                        Ingresar
+                        Continuar
                     </button>
 
                     <p style="font-size:11px;color:#888;margin-top:15px">
-                        Demostración local. No se transmiten datos.
+                        Maqueta visual. No se recopilan ni transmiten datos.
                     </p>
 
                 </form>
@@ -484,14 +463,14 @@ select:focus,
 
     </main>
 
-    <!-- FOOTER -->
+    <!-- PIE DE PÁGINA -->
     <footer class="footer">
 
         <div class="footer-content">
 
             <div class="copyright">
-                ©2016 Portal de consulta. Todos los derechos
-                reservados.
+                ©2026 Maqueta de demostración.
+                Todos los derechos reservados.
             </div>
 
             <a href="#" class="footer-link">
@@ -499,7 +478,7 @@ select:focus,
             </a>
 
             <div class="footer-extra">
-                Maqueta visual de demostración
+                Sitio de demostración no oficial
             </div>
 
         </div>
@@ -510,7 +489,7 @@ select:focus,
 
 <script>
 
-// MATRICES CAPTCHA
+// CAPTCHA DECORATIVO
 const letters = {
 A:["01110","10001","10001","11111","10001","10001","10001"],
 B:["11110","10001","10001","11110","10001","10001","11110"],
@@ -576,13 +555,13 @@ renderCaptcha();
 document.getElementById("refresh")
 .addEventListener("click", renderCaptcha);
 
-// DEMOSTRACIÓN LOCAL
+// FORMULARIO DEMOSTRATIVO
 document.getElementById("demoForm")
 .addEventListener("submit", function(event) {
 
     event.preventDefault();
 
-    alert("Esta es una maqueta de demostración. No se han enviado ni guardado datos.");
+    alert("Esta es una maqueta visual de demostración. No se ha enviado información.");
 
 });
 
@@ -591,7 +570,7 @@ document.getElementById("forgot")
 
     event.preventDefault();
 
-    alert("Sección de recuperación de demostración.");
+    alert("Vista de demostración.");
 
 });
 
