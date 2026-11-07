@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso a suscriptores - Demo</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f8f8f8;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* PANEL IZQUIERDO */
+
+.left-panel {
+    width: 50%;
+    min-height: 100vh;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.abstract {
+    position: absolute;
+    top: 35px;
+    left: -50px;
+    width: 570px;
+    height: 230px;
+    background:
+      radial-gradient(circle at 30% 50%, #b22b8b 0 10%, transparent 32%),
+      radial-gradient(circle at 45% 50%, #e34a9c 0 8%, transparent 35%),
+      radial-gradient(circle at 60% 40%, #d78ac2 0 5%, transparent 35%);
+    filter: blur(13px);
+    opacity: .8;
+}
+
+.abstract::before {
+    content: "";
+    position: absolute;
+    inset: 25px;
+    background-image: radial-gradient(#d32b91 1.5px, transparent 2px);
+    background-size: 13px 13px;
+    opacity: .5;
+}
+
+.left-content {
+    position: absolute;
+    bottom: 55px;
+    left: 8%;
+    right: 8%;
+    text-align: center;
+}
+
+.people {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    gap: 12px;
+    height: 260px;
+}
+
+.person {
+    width: 125px;
+    height: 190px;
+    border-radius: 65px 65px 15px 15px;
+    background: linear-gradient(145deg, #e5c2b4, #f4e3da);
+    position: relative;
+}
+
+.person:nth-child(2) {
+    height: 245px;
+    background: linear-gradient(145deg, #d9d9df, #7193ad);
+}
+
+.person:nth-child(3) {
+    background: linear-gradient(145deg, #292b35, #d5b4a6);
+}
+
+.person::before {
+    content: "";
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: #e5b99e;
+    top: -48px;
+    left: 25px;
+}
+
+.person:nth-child(2)::before {
+    background: #e4b995;
+}
+
+.person:nth-child(3)::before {
+    background: #d9a68e;
+}
+
+/* PANEL DERECHO */
+
+.right-panel {
+    width: 50%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 42px 35px;
+    background: #fafafa;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 430px;
+    text-align: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 32px;
+    gap: 4px;
+    color: #1760a9;
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.logo-symbol {
+    display: grid;
+    grid-template-columns: repeat(2, 10px);
+    gap: 3px;
+}
+
+.logo-symbol span {
+    width: 9px;
+    height: 9px;
+    background: #a52b86;
+    border-radius: 2px;
+}
+
+.logo-symbol span:nth-child(2) {
+    background: #2575b9;
+}
+
+.logo-symbol span:nth-child(3) {
+    background: #db398b;
+}
+
+.logo-symbol span:nth-child(4) {
+    background: #652c91;
+}
+
+h1 {
+    font-size: 39px;
+    color: #4775b5;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 55px;
+}
+
+.form-group {
+    margin-bottom: 17px;
+}
+
+select,
+input {
+    width: 100%;
+    height: 55px;
+    border: 1px solid #e2e2e2;
+    border-radius: 8px;
+    background: #fff;
+    padding: 0 14px;
+    font-size: 16px;
+    color: #444;
+    outline: none;
+    transition: .2s;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+select:focus,
+input:focus {
+    border-color: #4679bd;
+    box-shadow: 0 0 0 2px rgba(70,121,189,.10);
+}
+
+.captcha {
+    margin: 20px auto 25px;
+}
+
+.captcha-text {
+    font-family: monospace;
+    font-size: 28px;
+    letter-spacing: 4px;
+    color: #111;
+    font-weight: bold;
+    text-decoration: line-through;
+    text-decoration-color: #777;
+}
+
+.refresh {
+    display: block;
+    background: none;
+    border: none;
+    margin: 5px auto 0;
+    cursor: pointer;
+    font-size: 13px;
+    color: #111;
+}
+
+.forgot {
+    display: block;
+    margin: 25px 0 45px;
+    color: #3470b8;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.terms {
+    text-align: left;
+    padding: 0 5px;
+    margin-bottom: 15px;
+}
+
+.terms label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    color: #444;
+}
+
+.terms input {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    accent-color: #3474b9;
+}
+
+.terms a {
+    color: #c52b83;
+    text-decoration: underline;
+}
+
+.demo-button {
+    width: 190px;
+    height: 43px;
+    background: #bd2585;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.demo-button:hover {
+    background: #a71c73;
+}
+
+.demo-note {
+    color: #777;
+    font-size: 11px;
+    margin-top: 18px;
+}
+
+/* MÓVIL */
+
+@media(max-width: 850px) {
+    .left-panel {
+        display: none;
+    }
+
+    .right-panel {
+        width: 100%;
+        min-height: 100vh;
+        padding: 35px 22px;
+    }
+
+    .login-box {
+        max-width: 420px;
+    }
+
+    h1 {
+        font-size: 29px;
+    }
+
+    .subtitle {
+        font-size: 17px;
+        margin-bottom: 40px;
+    }
+
+    .logo {
+        margin-bottom: 30px;
+    }
+}
+
+@media(max-width: 400px) {
+    .right-panel {
+        padding: 28px 17px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    select,
+    input {
+        height: 51px;
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- PANEL IZQUIERDO -->
+    <section class="left-panel">
+        <div class="abstract"></div>
+
+        <div class="left-content">
+            <div class="people">
+                <div class="person"></div>
+                <div class="person"></div>
+                <div class="person"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PANEL DERECHO -->
+    <section class="right-panel">
+
+        <div class="login-box">
+
+            <div class="logo">
+                <div class="logo-symbol">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                Portal de consulta
+            </div>
+
+            <h1>Acceso a suscriptores</h1>
+            <p class="subtitle">Ingrese sus datos para continuar</p>
+
+            <form id="demoForm" autocomplete="off">
+
+                <div class="form-group">
+                    <select id="tipo">
+                        <option value="">Tipo de ID</option>
+                        <option>Cédula de ciudadanía</option>
+                        <option>Cédula de extranjería</option>
+                        <option>NUIP</option>
+                        <option>NIT</option>
+                        <option>Pasaporte</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input
+                        type="text"
+                        placeholder="Número de ID"
+                        maxlength="20"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <input
+                        type="password"
+                        placeholder="Contraseña"
+                        maxlength="50"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <input
+                        type="text"
+                        placeholder="Ingresa el código de demostración"
+                        maxlength="8"
+                    >
+                </div>
+
+                <div class="captcha">
+                    <div class="captcha-text" id="captcha">F T B E R P</div>
+                    <button class="refresh" type="button" id="refresh">
+                        Click para cambiar
+                    </button>
+                </div>
+
+                <a href="#" class="forgot" id="forgot">
+                    ¿Olvidó su contraseña?
+                </a>
+
+                <div class="terms">
+                    <label>
+                        <input type="checkbox">
+                        <span>He leído y acepto
+                            <a href="#">Condiciones de uso</a>
+                        </span>
+                    </label>
+
+                    <label>
+                        <input type="checkbox">
+                        <span>He leído y acepto
+                            <a href="#">Políticas de privacidad</a>
+                        </span>
+                    </label>
+                </div>
+
+                <button type="submit" class="demo-button">
+                    Continuar
+                </button>
+
+                <p class="demo-note">
+                    Maqueta visual de demostración. No se recopilan
+                    ni se transmiten datos.
+                </p>
+
+            </form>
+        </div>
+    </section>
+
+</div>
+
+<script>
+const captcha = document.getElementById("captcha");
+
+document.getElementById("refresh").addEventListener("click", () => {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ";
+    let code = "";
+
+    for (let i = 0; i < 6; i++) {
+        code += chars[Math.floor(Math.random() * chars.length)] + " ";
+    }
+
+    captcha.textContent = code.trim();
+});
+
+document.getElementById("demoForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    alert("Esta es una maqueta de demostración. No se ha enviado ningún dato.");
+});
+
+document.getElementById("forgot").addEventListener("click", function(e) {
+    e.preventDefault();
+    alert("Sección de recuperación de contraseña de demostración.");
+});
+</script>
+
+</body>
+</html>
