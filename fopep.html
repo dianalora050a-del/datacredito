@@ -1,11 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FOPEP - Portal Web</title>
+
+<title>FOPEP - Iniciar Sesión</title>
 
 <style>
+
+/* CONFIGURACIÓN GENERAL */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -14,13 +19,13 @@
 
 :root {
     --verde: #008f68;
-    --oscuro: #006b52;
+    --verde-oscuro: #006b52;
     --azul: #3267c7;
     --texto: #34495a;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     color: var(--texto);
     background: white;
     font-size: 14px;
@@ -31,7 +36,7 @@ a {
     color: inherit;
 }
 
-/* GOV.CO */
+/* BARRA GOV.CO SUPERIOR */
 
 .gov {
     background: var(--azul);
@@ -90,7 +95,7 @@ a {
     padding: 13px;
 }
 
-/* NAVEGACIÓN */
+/* MENÚ DE NAVEGACIÓN */
 
 nav {
     background: var(--verde);
@@ -124,7 +129,7 @@ nav a:hover {
     width: 155px;
 }
 
-/* CONTENIDO */
+/* CONTENIDO PRINCIPAL */
 
 main {
     max-width: 1050px;
@@ -144,18 +149,16 @@ main {
     align-items: start;
 }
 
-/* IMAGEN ORIGINAL */
+/* IMAGEN PRINCIPAL */
 
 .imagen {
     height: 390px;
     overflow: hidden;
-}
-
-.imagen img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    background-image:
+        url("https://sistema.fopep.gov.co/webroot/assets/images/bg-iniciar-sesion.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* FORMULARIO */
@@ -168,7 +171,7 @@ main {
 
 h1 {
     font-size: 30px;
-    color: var(--oscuro);
+    color: var(--verde-oscuro);
     margin-bottom: 32px;
 }
 
@@ -187,6 +190,10 @@ input, select {
     margin-bottom: 21px;
     font-size: 14px;
     background: white;
+}
+
+input:focus, select:focus {
+    outline: 1px solid var(--verde);
 }
 
 .captcha {
@@ -215,6 +222,11 @@ input, select {
     font-weight: bold;
     font-size: 15px;
     cursor: pointer;
+    border-radius: 3px;
+}
+
+.boton:hover {
+    background: var(--verde-oscuro);
 }
 
 .olvido-form {
@@ -223,7 +235,7 @@ input, select {
     color: #006bd6;
 }
 
-/* BIENVENIDA */
+/* SECCIÓN BIENVENIDA */
 
 .portal-extra {
     max-width: 1050px;
@@ -237,11 +249,22 @@ input, select {
     gap: 22px;
 }
 
+/* IMAGEN DE FONDO ORIGINAL FOPEP */
+
 .bienvenida {
     min-height: 125px;
-    background:
-        linear-gradient(#111b207c, #111b207c),
-        url("foto-adultos.jpg") center/cover;
+
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,0.45),
+            rgba(0,0,0,0.45)
+        ),
+        url("https://sistema.fopep.gov.co/webroot/assets/images/bg-iniciar-sesion.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     display: flex;
     align-items: center;
     padding: 25px;
@@ -253,12 +276,15 @@ input, select {
     line-height: 1.2;
 }
 
+/* BOTONES REGISTRO E INICIO */
+
 .tarjeta-acciones {
     padding: 18px;
     box-shadow: 0 3px 15px #0002;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
+    border-radius: 5px;
 }
 
 .registro, .inicio {
@@ -275,13 +301,23 @@ input, select {
     color: #00885f;
 }
 
+.registro:hover {
+    background: #0872df;
+    color: white;
+}
+
+.inicio:hover {
+    background: var(--verde);
+    color: white;
+}
+
 .olvido {
     color: #006bd6;
     font-weight: bold;
     grid-column: 1 / -1;
 }
 
-/* REGRESAR */
+/* REGRESAR Y ARRIBA */
 
 .regresar {
     display: flex;
@@ -289,6 +325,12 @@ input, select {
     align-items: center;
     gap: 18px;
     margin: 35px 0;
+}
+
+.regresar a {
+    display: flex;
+    align-items: center;
+    gap: 9px;
 }
 
 .regresar span {
@@ -304,7 +346,7 @@ input, select {
 /* PIE DE PÁGINA */
 
 footer {
-    background: var(--oscuro);
+    background: var(--verde-oscuro);
     color: white;
     padding: 25px max(calc((100% - 1050px)/2), 20px);
 }
@@ -437,7 +479,13 @@ footer p {
     footer {
         padding: 22px 17px;
     }
+
+    .footer-bottom {
+        font-size: 13px;
+        gap: 15px;
+    }
 }
+
 </style>
 </head>
 
@@ -452,12 +500,14 @@ footer p {
 <header class="header">
 
     <div class="logo">
+
         <div class="logo-icon">❮</div>
 
         <div class="logo-text">
             <small>COLOMBIA<br>POTENCIA DE LA</small>
             VIDA
         </div>
+
     </div>
 
     <div>Imprimir &nbsp; ◉ &nbsp; Tт &nbsp; ☰</div>
@@ -468,9 +518,10 @@ footer p {
 
 </header>
 
-<!-- MENÚ -->
+<!-- NAVEGACIÓN -->
 
 <nav>
+
     <div class="nav-container">
 
         <a href="#">Inicio</a>
@@ -483,6 +534,7 @@ footer p {
         <div class="buscar">⌕ Buscar</div>
 
     </div>
+
 </nav>
 
 <!-- FORMULARIO PRINCIPAL -->
@@ -495,10 +547,11 @@ footer p {
 
     <section class="contenido">
 
-        <div class="imagen">
-            <img src="foto-adultos.jpg"
-                 alt="Pareja de adultos mayores">
-        </div>
+        <!-- IMAGEN FOPEP -->
+
+        <div class="imagen"></div>
+
+        <!-- FORMULARIO -->
 
         <div class="formulario">
 
@@ -506,32 +559,58 @@ footer p {
 
             <form id="loginForm">
 
-                <label>Tipo de Documento</label>
+                <label for="tipo">
+                    Tipo de Documento
+                </label>
 
-                <select required>
-                    <option value="">Seleccione un tipo</option>
-                    <option>Cédula de ciudadanía</option>
-                    <option>Cédula de extranjería</option>
-                    <option>Pasaporte</option>
+                <select id="tipo" required>
+
+                    <option value="">
+                        Seleccione un tipo
+                    </option>
+
+                    <option value="CC">
+                        Cédula de ciudadanía
+                    </option>
+
+                    <option value="CE">
+                        Cédula de extranjería
+                    </option>
+
+                    <option value="PA">
+                        Pasaporte
+                    </option>
+
                 </select>
 
-                <label>
+                <label for="documento">
                     Documento (Escríbalo sin puntos)
                 </label>
 
-                <input type="text"
-                       placeholder="Documento"
-                       required>
+                <input
+                    type="text"
+                    id="documento"
+                    placeholder="Documento"
+                    required
+                >
 
-                <label>Contraseña</label>
+                <label for="password">
+                    Contraseña
+                </label>
 
-                <input type="password"
-                       placeholder="Escriba contraseña aquí"
-                       required>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Escriba contraseña aquí"
+                    required
+                >
 
                 <div class="captcha">
-                    <input type="checkbox">
+
+                    <input type="checkbox" required>
+
                     <span>No soy un robot</span>
+
                 </div>
 
                 <button class="boton" type="submit">
@@ -583,21 +662,28 @@ footer p {
 
     </div>
 
+    <!-- BOTONES DE NAVEGACIÓN -->
+
     <div class="regresar">
 
-        <a href="#" onclick="history.back();return false;">
+        <a href="#"
+           onclick="history.back(); return false;">
+
             Regresar <span>←</span>
+
         </a>
 
         <a href="#top">
+
             <span>↑</span> Arriba
+
         </a>
 
     </div>
 
 </section>
 
-<!-- FOOTER -->
+<!-- PIE DE PÁGINA -->
 
 <footer>
 
@@ -621,13 +707,17 @@ footer p {
 
             <h3>FUNCIONARIOS</h3>
 
-            <p>Acceso funcionarios</p>
+            <p>
+                Acceso funcionarios
+            </p>
 
             <div class="redes">
+
                 <span>f</span>
                 <span>𝕏</span>
                 <span>▶</span>
                 <span>◉</span>
+
             </div>
 
         </div>
@@ -636,7 +726,9 @@ footer p {
 
             <h3>HORARIO DE ATENCIÓN AL PÚBLICO</h3>
 
-            <p>Lunes a viernes</p>
+            <p>
+                Lunes a viernes
+            </p>
 
             <p>
                 <b>Sede FOPEP</b><br>
@@ -669,19 +761,29 @@ footer p {
 
 </footer>
 
+<!-- BARRA INFERIOR GOV.CO -->
+
 <div class="gov-footer">
+
     🇨🇴 &nbsp; ♛ | GOV.CO
+
 </div>
 
+<!-- JAVASCRIPT -->
+
 <script>
+
 document.getElementById("loginForm")
-.addEventListener("submit", function(e) {
+.addEventListener("submit", function(event) {
 
-    e.preventDefault();
+    event.preventDefault();
 
-    alert("Maqueta visual: no se envían datos.");
+    alert(
+        "Esta es una maqueta visual. No se envían datos ni se inicia sesión."
+    );
 
 });
+
 </script>
 
 </body>
